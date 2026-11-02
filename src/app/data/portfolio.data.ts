@@ -15,36 +15,53 @@ export const CONTACT_INFO: ContactInfo = {
   email: 'rahul627q@gmail.com',
   phone: '+91 9717379245',
   phoneRaw: '9717379245',
-  whatsappUrl: 'https://wa.me/919717379245?text=Hello%20Rahul,%20I%20viewed%20your%20Interior%20Design%20%26%203D%20Visualization%20portfolio%20and%20would%20love%20to%20discuss%20a%20project.',
+  whatsappUrl: 'https://wa.me/919717379245?text=Hello%20Rahul,%20I%20reviewed%20your%20portfolio%20attached%20to%20your%20resume%20and%20would%20love%20to%20connect.',
   summary:
-    'Creative and detail-oriented Interior Designer and 3D Visualizer with 2 years of professional experience in residential interior design, 3D modeling, photorealistic rendering, and 2D technical drawings. Skilled in designing bedrooms, wardrobes, feature walls, furniture, and interior elevations. Proficient in 3ds Max, Corona Renderer, and AutoCAD, with a strong understanding of space planning, material selection, lighting, and modern interior aesthetics.',
+    'Creative and detail-oriented Interior Designer and 3D Visualizer currently working at Sketch Spaces with 2+ years of professional studio experience across Camara Interiors and Ettore Interior. Skilled in residential interior design, 3D modeling, photorealistic rendering, and 2D technical drawings. Proficient in 3ds Max, Corona Renderer, and AutoCAD, with a strong understanding of space planning, material selection, lighting, and modern interior aesthetics.',
   stats: {
-    experienceYears: '2+',
-    projectsCompleted: '35+',
-    photorealisticRenders: '50+ Real Works',
-    autocadPrecision: '100%',
+    experienceYears: '2+ Yrs',
+    projectsCompleted: '3 Studios',
+    photorealisticRenders: '50+ Works',
+    autocadPrecision: '100% CAD',
   },
 };
 
 export const EXPERIENCES: Experience[] = [
   {
+    company: 'Sketch Spaces',
+    location: 'New Delhi / NCR',
+    role: 'Interior Designer & 3D Visualizer',
+    period: 'Present (Current Studio)',
+    current: true,
+    badge: 'Currently Working',
+    summary:
+      'Recently joined the creative design team at Sketch Spaces, contributing to residential spatial concepts, 3D visualization, and technical execution drawings.',
+    responsibilities: [
+      'Creating photorealistic 3D interior renders and spatial walkthroughs using Autodesk 3ds Max & Corona Renderer.',
+      'Preparing 2D technical working drawings, carpentry joinery elevations, and false ceiling details in AutoCAD.',
+      'Collaborating on interior space planning, material curation boards, and high-fidelity visual presentations.',
+      'Aligning design aesthetics with functional ergonomics and precise site execution standards.',
+    ],
+    tools: ['3ds Max', 'Corona Renderer', 'AutoCAD 2025', 'Space Planning', 'Photoshop'],
+  },
+  {
     company: 'Camara Interiors',
     location: 'Sector 63, Noida',
     role: 'Interior Designer & 3D Visualizer',
-    period: '04/2025 - Present',
-    current: true,
-    badge: 'Current Studio',
+    period: '04/2025 - 2026',
+    current: false,
+    badge: 'Interior Studio',
     summary:
-      'Spearheading 3D photorealistic visualization, space planning, and AutoCAD technical detailing for premium residential interior projects across NCR.',
+      'Spearheaded 3D photorealistic visualization and AutoCAD technical detailing for high-end residential interior projects across NCR.',
     responsibilities: [
-      'Created 3D interior models and photorealistic renders for high-end residential interior projects using 3ds Max & Corona Renderer.',
+      'Created 3D interior models and photorealistic renders for high-end residential projects using 3ds Max & Corona Renderer.',
       'Prepared 2D layouts, working drawings, carpentry elevations, and plumbing/electrical coordination using AutoCAD.',
       'Designed master bedrooms, modular wardrobe units, feature TV walls, and customized furniture.',
       'Developed holistic interior design concepts with precision material selection, PBR texture mapping, and atmospheric lighting setup.',
       'Produced realistic visual client presentations to communicate spatial concepts and finishes with maximum fidelity.',
-      'Managed furniture layouts, ergonomic space utilization, and aesthetic detailing from schematic design to on-site execution.',
+      'Managed furniture layouts, space utilization, and aesthetic detailing from schematic design to on-site execution.',
     ],
-    tools: ['3ds Max', 'Corona Renderer', 'AutoCAD 2025', 'Material Curation', 'Veneers & Marble'],
+    tools: ['3ds Max', 'Corona Renderer', 'AutoCAD', 'Material Selection', 'Veneers & Stone'],
   },
   {
     company: 'Ettore Interior',
@@ -62,7 +79,7 @@ export const EXPERIENCES: Experience[] = [
       'Created bespoke furniture concepts and systematically explored tactile material and color combinations.',
       'Supported the development of functional, ergonomic, and visually balanced residential interior spaces.',
     ],
-    tools: ['AutoCAD', '3ds Max', 'Corona', 'Space Planning', 'Detail Drafting'],
+    tools: ['AutoCAD', '3ds Max', 'Corona', 'Space Planning', 'Elevation Drafting'],
   },
 ];
 
@@ -89,7 +106,7 @@ export const SKILL_GROUPS: SkillGroup[] = [
     icon: 'cube',
     description: 'Transforming architectural blueprints into hyper-realistic atmospheric renders.',
     skills: [
-      { name: 'Autodesk 3ds Max', level: 95, levelText: 'Mastery', experienceYears: '2+ yrs', tags: ['Hard Surface', 'Polygonal Modeling', 'Furniture Details'] },
+      { name: 'Autodesk 3ds Max', level: 95, levelText: 'Mastery', experienceYears: '2+ yrs', tags: ['Polygonal Modeling', 'Hard Surface', 'Bespoke Furniture'] },
       { name: 'Corona Renderer 11', level: 95, levelText: 'Mastery', experienceYears: '2+ yrs', tags: ['Corona Physical Cam', 'Tone Mapping', 'LightMix', 'PBR Shaders'] },
       { name: 'Lighting Setup & Design', level: 94, levelText: 'Advanced', experienceYears: '2+ yrs', tags: ['IES Profiles', 'Sun & Sky', 'Concealed LED Coves', '3000K Warm Ambience'] },
       { name: 'Camera Setup & Composition', level: 92, levelText: 'Advanced', experienceYears: '2+ yrs', tags: ['Focal Length 24-50mm', 'Two-Point Perspective', 'Depth of Field'] },
@@ -140,7 +157,7 @@ export const SERVICES_DATA: Service[] = [
     description:
       'Custom luxury bedroom concepts with fluted feature walls, curved upholstered headboards, ambient cove lighting, bedside pendants, and integrated wardrobe solutions.',
     icon: 'bed',
-    deliverables: ['3D Views from 3 Angles', 'Headboard Elevation Drawing', 'Color & Fabric Palette Schedule', 'Lighting Circuit Concept'],
+    deliverables: ['3D Views from Multiple Angles', 'Headboard Elevation Drawing', 'Color & Fabric Palette Schedule', 'Lighting Circuit Concept'],
     software: ['3ds Max', 'Corona', 'AutoCAD'],
     turnaround: '4 - 6 Days',
   },
@@ -198,7 +215,7 @@ export const PROJECTS_DATA: Project[] = [
     categoryLabel: 'Living & Dining Lounge',
     subtitle: 'Arched TV Backdrop with Perimeter Warm Cove, Velvet Dining & Bar Cabinet',
     description:
-      'A centerpiece open-concept living and dining lounge designed for a luxury residential residence. Features an asymmetric curved feature TV wall with concealed 3000K warm LED glow, a floating natural oak media credenza, arched fluted glass bar cabinetry, terracotta velvet dining chairs, and a statement double-tier brass ring chandelier. Modeled in 3ds Max and rendered with Corona Physical Camera.',
+      'An open-concept living and dining lounge designed for a luxury residential residence. Features an asymmetric curved feature TV wall with concealed 3000K warm LED glow, floating natural oak media credenza, arched fluted glass bar cabinetry, terracotta velvet dining chairs, and a statement double-tier brass ring chandelier. Modeled in 3ds Max and rendered with Corona Physical Camera.',
     location: 'Sector 63, Noida',
     studio: 'Camara Interiors',
     year: '2025',
@@ -291,7 +308,7 @@ export const PROJECTS_DATA: Project[] = [
     categoryLabel: 'Contemporary Bedroom',
     subtitle: 'Sweeping Curved Headboard, Fluted Acoustic Slats & Olive Plaster Backdrop',
     description:
-      'A striking modern bedroom design featuring an asymmetric sweeping headboard with a continuous glowing LED silhouette. Rahul created multiple design iterations for the client: one with a smooth minimalist backdrop and dual circular disc sconces, and another featuring vertical fluted acoustic slats with an organic olive green plaster accent. Includes integrated cantilevered bedside drawers and marble flooring.',
+      'A modern bedroom design featuring an asymmetric sweeping headboard with a continuous glowing LED silhouette. Rahul created multiple design iterations: one with a smooth minimalist backdrop and dual circular disc sconces, and another featuring vertical fluted acoustic slats with an organic olive green plaster accent. Includes integrated cantilevered bedside drawers and marble flooring.',
     location: 'Gagan Vihar, Delhi',
     studio: 'Ettore Interior',
     year: '2025',
@@ -337,7 +354,7 @@ export const PROJECTS_DATA: Project[] = [
     categoryLabel: 'Custom Wardrobe & Vanity',
     subtitle: 'Bronze Profile Fluted Glass Wardrobe, Backlit Display Niches & Vanity Desk',
     description:
-      'A luxury modular master wardrobe and dressing suite designed by Rahul. Features floor-to-ceiling bronze aluminum profile doors with tinted fluted glass and sensor-activated internal illumination. The opposite wall features a floating TV console with fluted side pilasters and illuminated display niches, flanked by a dedicated vanity table with vertical wood slats, upholstered stool, and backlit mirror.',
+      'A modular master wardrobe and dressing suite. Features floor-to-ceiling bronze aluminum profile doors with tinted fluted glass and sensor-activated internal illumination. The opposite wall features a floating TV console with fluted side pilasters and illuminated display niches, flanked by a dedicated vanity table with vertical wood slats, upholstered stool, and backlit mirror.',
     location: 'Sector 63, Noida',
     studio: 'Camara Interiors',
     year: '2025',
@@ -431,7 +448,7 @@ export const PROJECTS_DATA: Project[] = [
     categoryLabel: 'Architectural Foyer & Feature Wall',
     subtitle: 'Stone Masonry Cladding, Arched Wrought Iron Balustrades & Brass Chandelier',
     description:
-      'A majestic double-height entry foyer and grand staircase designed for a multi-level villa. Rahul developed three distinct wall treatments for client selection: a dramatic rustic grey stone masonry wall, modern geometric architectural panels, and classical boiserie mouldings with walnut doors. Illuminated by a mid-century multi-bulb brass ring chandelier and recessed step lighting.',
+      'A double-height entry foyer and grand staircase designed for a multi-level villa. Rahul developed three distinct wall treatments: a dramatic rustic grey stone masonry wall, modern geometric architectural panels, and classical boiserie mouldings with walnut doors. Illuminated by a mid-century multi-bulb brass ring chandelier and recessed step lighting.',
     location: 'Sector 63, Noida',
     studio: 'Camara Interiors',
     year: '2025',
@@ -519,7 +536,7 @@ export const PROJECTS_DATA: Project[] = [
     categoryLabel: 'Home Office & Study Architecture',
     subtitle: 'Calacatta Marble Desk, Floor-to-Ceiling Illuminated Bookcase & French Arch',
     description:
-      'A dedicated private study and home office integrated into a luxury residential layout. Features a custom floor-to-ceiling natural oak bookcase with warm LED under-shelf lighting, an executive Calacatta marble slab desk with cognac leather swivel seating, and an arched black steel French glazed partition that maintains acoustic privacy while offering spatial connection to the dining room.',
+      'A private study and home office integrated into a luxury residential layout. Features a custom floor-to-ceiling natural oak bookcase with warm LED under-shelf lighting, an executive Calacatta marble slab desk with cognac leather swivel seating, and an arched black steel French glazed partition that maintains acoustic privacy while offering spatial connection to the dining room.',
     location: 'Sector 63, Noida',
     studio: 'Camara Interiors',
     year: '2025',
@@ -564,7 +581,7 @@ export const PROJECTS_DATA: Project[] = [
     categoryLabel: 'Master Bedroom',
     subtitle: 'Dusty Rose Boiserie Backdrop, Fluted Slats & Organic Illuminated Mirror',
     description:
-      'A romantic contemporary bedroom featuring a curved dusty rose boiserie feature wall flanked by white fluted vertical slats and an asymmetric organic pebble mirror with warm rear LED glow. Includes a suspended gold hoop pendant lamp, tufted vertical channel headboard, and two-tone wardrobe joinery.',
+      'A contemporary bedroom featuring a curved dusty rose boiserie feature wall flanked by white fluted vertical slats and an asymmetric organic pebble mirror with warm rear LED glow. Includes a suspended gold hoop pendant lamp, tufted vertical channel headboard, and two-tone wardrobe joinery.',
     location: 'Gagan Vihar, Delhi',
     studio: 'Ettore Interior',
     year: '2024',
@@ -646,6 +663,14 @@ export const PROJECTS_DATA: Project[] = [
 
 export const TESTIMONIALS = [
   {
+    client: 'Design Lead, Sketch Spaces',
+    role: 'Principal Interior Architect',
+    project: 'Residential 3D Visualization & Space Planning',
+    feedback:
+      'Rahul’s renders have tremendous depth, nuanced lighting, and immaculate texture calibration. His technical AutoCAD skills mean his models are buildable and site-ready from day one.',
+    rating: 5,
+  },
+  {
     client: 'Principal Architect, Camara Interiors',
     role: 'Studio Director, Sector 63 Noida',
     project: 'Luxury Penthouse Renders & AutoCAD Execution Sets',
@@ -661,17 +686,8 @@ export const TESTIMONIALS = [
       'Rahul combines creative design courage with disciplined technical execution. His curved headboard modeling in 3ds Max and Corona lighting setup are top-tier. Always delivers client-ready renders on tight schedules.',
     rating: 5,
   },
-  {
-    client: 'Khanna Residence Client',
-    role: 'Villa Owner, New Delhi',
-    project: 'Khanna\'s Villa 3-Storey Facade & Master Suite',
-    feedback:
-      'Seeing Rahul\'s 3D visualization of Khanna\'s Villa before breaking ground was incredible. His lighting at twilight and stone texture details helped us finalize the exact stone and wood finishes. A true master of 3D visualization!',
-    rating: 5,
-  },
 ];
 
-// Map all 50 real work render images for the Render Vault Gallery
 export const RENDER_VAULT_ITEMS: RenderVaultItem[] = Array.from({ length: 50 }, (_, i) => {
   const pageNum = i + 1;
   const pad = pageNum < 10 ? `0${pageNum}` : `${pageNum}`;

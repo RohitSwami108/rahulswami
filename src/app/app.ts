@@ -5,7 +5,6 @@ import { ExperienceSkillsComponent } from './components/experience-skills/experi
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProjectEstimatorComponent } from './components/project-estimator/project-estimator.component';
 import { ProjectGalleryComponent } from './components/project-gallery/project-gallery.component';
 import { ProjectModalComponent } from './components/project-modal/project-modal.component';
 import { RenderVaultModalComponent } from './components/render-vault-modal/render-vault-modal.component';
@@ -20,15 +19,14 @@ import { Project } from './models/portfolio.models';
     CommonModule,
     NavbarComponent,
     HeroComponent,
-    VisualizerStudioComponent,
     ProjectGalleryComponent,
-    ProjectModalComponent,
-    RenderVaultModalComponent,
-    ServicesComponent,
+    VisualizerStudioComponent,
     ExperienceSkillsComponent,
-    ProjectEstimatorComponent,
+    ServicesComponent,
     ContactSectionComponent,
     FooterComponent,
+    ProjectModalComponent,
+    RenderVaultModalComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -62,13 +60,6 @@ export class App {
     this.isVaultOpen.set(false);
     if (!this.selectedProject() && typeof document !== 'undefined') {
       document.body.style.overflow = '';
-    }
-  }
-
-  onServiceSelected(serviceId: string): void {
-    const target = document.querySelector('#estimator');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }

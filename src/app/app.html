@@ -1,41 +1,38 @@
-<main class="min-h-screen relative overflow-x-hidden">
-  <!-- Top Glass Navigation Bar -->
-  <app-navbar></app-navbar>
+<main class="min-h-screen relative overflow-x-hidden bg-[#08090c] text-[#f4f4f5]">
+  <!-- Editorial Sticky Floating Navigation -->
+  <app-navbar (openVault)="openVault()"></app-navbar>
 
-  <!-- Hero Section with Real 4K Corona Renders -->
+  <!-- Cinematic Hero -->
   <app-hero></app-hero>
 
-  <!-- Interactive Visualizer Studio: 2D AutoCAD Blueprint vs 3D Corona Photorealistic Render -->
-  <app-visualizer-studio></app-visualizer-studio>
-
-  <!-- Selected Architectural Projects & Renders Gallery -->
+  <!-- [01] Curated Works (Editorial Large Cards) -->
   <app-project-gallery 
     (projectSelected)="openProjectModal($event)"
     (openVault)="openVault()"
   ></app-project-gallery>
 
-  <!-- Spatial Design & 3D Visualization Services -->
-  <app-services (serviceSelected)="onServiceSelected($event)"></app-services>
+  <!-- [02] Interactive 2D CAD vs 3D Corona Visualizer Studio -->
+  <app-visualizer-studio></app-visualizer-studio>
 
-  <!-- Studio Work History (Camara Interiors & Ettore Interior) & Software Skills -->
+  <!-- [03] Studio Practice, Experience & Background -->
   <app-experience-skills></app-experience-skills>
 
-  <!-- Interactive Project Estimator & WhatsApp Quote Generator -->
-  <app-project-estimator></app-project-estimator>
+  <!-- [04] Studio Deliverables & Core Competencies -->
+  <app-services></app-services>
 
-  <!-- Direct Consultation Contact & Resume Download -->
+  <!-- [05] Candidate Contact & Resume Submission -->
   <app-contact></app-contact>
 
-  <!-- Architectural Studio Footer -->
+  <!-- Minimalist Studio Footer -->
   <app-footer></app-footer>
 
-  <!-- Fullscreen Lightbox Modal for Selected Project & Multi-Views -->
+  <!-- Case Study Lightbox Modal -->
   <app-project-modal 
     [project]="selectedProject()" 
     (close)="closeProjectModal()"
   ></app-project-modal>
 
-  <!-- Complete 50-Render Interactive Portfolio Vault Modal -->
+  <!-- Complete 50-Render Interactive Archive Vault -->
   <app-render-vault-modal
     [isOpen]="isVaultOpen()"
     (close)="closeVault()"
