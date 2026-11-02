@@ -1,0 +1,43 @@
+<main class="min-h-screen relative overflow-x-hidden">
+  <!-- Top Glass Navigation Bar -->
+  <app-navbar></app-navbar>
+
+  <!-- Hero Section with Real 4K Corona Renders -->
+  <app-hero></app-hero>
+
+  <!-- Interactive Visualizer Studio: 2D AutoCAD Blueprint vs 3D Corona Photorealistic Render -->
+  <app-visualizer-studio></app-visualizer-studio>
+
+  <!-- Selected Architectural Projects & Renders Gallery -->
+  <app-project-gallery 
+    (projectSelected)="openProjectModal($event)"
+    (openVault)="openVault()"
+  ></app-project-gallery>
+
+  <!-- Spatial Design & 3D Visualization Services -->
+  <app-services (serviceSelected)="onServiceSelected($event)"></app-services>
+
+  <!-- Studio Work History (Camara Interiors & Ettore Interior) & Software Skills -->
+  <app-experience-skills></app-experience-skills>
+
+  <!-- Interactive Project Estimator & WhatsApp Quote Generator -->
+  <app-project-estimator></app-project-estimator>
+
+  <!-- Direct Consultation Contact & Resume Download -->
+  <app-contact></app-contact>
+
+  <!-- Architectural Studio Footer -->
+  <app-footer></app-footer>
+
+  <!-- Fullscreen Lightbox Modal for Selected Project & Multi-Views -->
+  <app-project-modal 
+    [project]="selectedProject()" 
+    (close)="closeProjectModal()"
+  ></app-project-modal>
+
+  <!-- Complete 50-Render Interactive Portfolio Vault Modal -->
+  <app-render-vault-modal
+    [isOpen]="isVaultOpen()"
+    (close)="closeVault()"
+  ></app-render-vault-modal>
+</main>

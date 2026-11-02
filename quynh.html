@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" style="--chrome: #070707">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#070707" />
+    <!-- Light only: the site has its own dark (Invert colour). Without this, browsers'
+         auto-dark (Chrome/Arc flag, Samsung Internet) recolour text + backgrounds but not
+         images — e.g. the Monster phones' status bar stayed black on a darkened screen. -->
+    <meta name="color-scheme" content="only light" />
+    <link rel="icon" href="/zizi-favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/zizi-favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/zizi-apple-touch-icon.png" />
+    <!-- The first screen's two faces: fetch them with the HTML, not after the CSS. -->
+    <link rel="preload" href="/fonts/HelveticaNowDisplay-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Per-page title, description, canonical, Open Graph and JSON-LD (src/lib/seo.ts). -->
+    <title>Quynh Cao (Zizi) - Folio</title>
+    <meta name="description" content="Portfolio of Quynh Cao (Zizi), a designer in Vietnam with 7 years across product, web, motion and design systems." />
+    <link rel="canonical" href="https://quynh.moe/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Quynh Cao" />
+    <meta property="og:title" content="Quynh Cao (Zizi) - Folio" />
+    <meta property="og:description" content="Portfolio of Quynh Cao (Zizi), a designer in Vietnam with 7 years across product, web, motion and design systems." />
+    <meta property="og:url" content="https://quynh.moe/" />
+    <meta property="og:image" content="https://quynh.moe/og/zizi-og-default-02.jpg" />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quynh Cao (Zizi) - Folio" />
+    <meta name="twitter:description" content="Portfolio of Quynh Cao (Zizi), a designer in Vietnam with 7 years across product, web, motion and design systems." />
+    <meta name="twitter:image" content="https://quynh.moe/og/zizi-og-default-02.jpg" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://quynh.moe/#person","name":"Quynh Cao","alternateName":"Zizi","jobTitle":"Product & Web Designer","email":"mailto:quynhcao.design@gmail.com","url":"https://quynh.moe","homeLocation":{"@type":"Place","name":"Nam Dinh, Vietnam"},"image":{"@type":"ImageObject","url":"https://quynh.moe/media/about/about-profile-01.webp","width":640,"height":853,"caption":"Quynh Cao"},"knowsAbout":["Storytelling","Animation","Mobile App Design","Website Design","Design System","Vibe Code"],"worksFor":{"@type":"Organization","name":"Konpo Studio"},"sameAs":["https://dribbble.com/cao-quynh","https://www.behance.net/chomotmien8bd5","https://www.linkedin.com/in/cao-quynh-b52830235/","https://www.instagram.com/quynh_cao_/"]},{"@type":"WebSite","@id":"https://quynh.moe/#website","url":"https://quynh.moe","name":"Quynh Cao","author":{"@id":"https://quynh.moe/#person"}}]}</script>
+    <link rel="preload" as="image" type="image/avif" imagesrcset="/media/chat-artify/chat-artify-hero-01-640.avif 960w, /media/chat-artify/chat-artify-hero-01-960.avif 1280w, /media/chat-artify/chat-artify-hero-01-1280.avif 1920w, /media/chat-artify/chat-artify-hero-01-1920.avif 2400w, /media/chat-artify/chat-artify-hero-01.avif 99999w" imagesizes="(max-width: 900px) 150vw, 97.5vw" fetchpriority="high" />
+    <style>
+      /* The crawlable copy in #root (src/lib/seo.ts) is for crawlers and link previews
+         that read the HTML. Visitors never see it: it stays in the DOM but is clipped
+         (like .sr-only) until React replaces it with the loader + the same content, so a
+         reload shows no flash of plain text. Without JS, the <noscript> below reveals it. */
+      /* The browser's bars take their colour from --chrome (src/lib/chrome.ts). It starts
+         as the loader's black (the style attribute on <html>), from the first paint and
+         before any script, until the loader has gone. */
+      body { margin: 0; }
+      html, body { background: var(--chrome); }
+      .seo-page {
+        position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+        overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+      }
+    </style>
+    <noscript>
+      <style>
+        .seo-page { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; white-space: normal; max-width: 640px; padding: 32px 20px; color: #fef3ee; font: 14px/1.4 system-ui, sans-serif; }
+        .seo-page a { color: inherit; }
+        .seo-page nav a { margin-right: 16px; }
+        .seo-page img { max-width: 100%; height: auto; }
+      </style>
+    </noscript>
+    <script type="module" crossorigin src="/assets/index-CF3Ad5Zo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Ci-2K9Cr.css">
+    <link rel="modulepreload" crossorigin href="/assets/Home-LrP0Tb4r.js">
+    <link rel="preload" as="style" crossorigin href="/assets/Home-CqJJnoUv.css">
+  </head>
+  <body>
+    <div id="root"><div class="seo-page"><nav aria-label="Primary"><a href="/">Work</a> <a href="/about">About</a> <a href="/playground">Playground</a> <a href="/cdn-cgi/l/email-protection#8cfdf9f5e2e4efede3a2e8e9ffe5ebe2ccebe1ede5e0a2efe3e1"><span class="__cf_email__" data-cfemail="7d0c080413151e1c125319180e141a133d1a101c1411531e1210">[email&#160;protected]</span></a></nav><main><h1>Quynh Cao (Zizi) - Folio</h1><p>Portfolio of Quynh Cao (Zizi), a designer in Vietnam with 7 years across product, web, motion and design systems.</p><h2>Selected work</h2><article><h3><a href="/work/chat-artify">Chat Artify</a></h3><p>Mobile Application · 2025</p><p>Project for an AI-powered chatbot platform that seamlessly integrates intelligent content creation using Midjourney and ChatGPT.</p></article><article><h3><a href="/work/run-x-ring">RunX Ring</a></h3><p>Mobile Application · 2025</p><p>RunX Ring is a wearable fitness tracker worn on your finger. It pairs with your smartphone or tablet via the RunX App, automatically tracking your daily activity and syncing the data in real time.</p></article><article><h3><a href="/work/monster-chat-app">Monster Chat App</a></h3><p>Mobile Application · 2021</p><p>Monster Messenger is an iOS UI kit that brings messaging, social, and mobile payments together in one app. A major update to the original Chat App UI Kit, it has over 100 screens in light and dark mode and covers nearly every kind of message, from text, photos, and video to files, audio, and polls, ready to start a new app or drop into an existing one.</p></article><article><h3><a href="/work/travala-travel">Travala Travel</a></h3><p>Web Application · 2025</p><p>A travel booking platform for hotels and flights, designed to make finding and booking a trip feel clear and effortless. Travala works alongside RunX Ring: the tokens users earn by staying active become a way to pay for where they go next.</p></article><article><h3><a href="/work/hyundai-tc-motor">Hyundai TC Motor</a></h3><p>Web Design · 2023</p><p>A complete website redesign for Hyundai TC Motor in Vietnam, covering vehicle browsing, model comparisons, test-drive bookings, dealer search, and after-sales services.</p></article><article><h3><a href="/work/yamaha-revzone">Yamaha Revzone</a></h3><p>Web Design · 2022</p><p>Revzone is Yamaha's official home for big bikes in Vietnam, but its website no longer matched the energy of the machines on its floor. This redesign rebuilds the experience around the ride: dramatic model pages, clear pricing across six lines, riding gear and apparel, and a simple path to service at Revzone.</p></article><article><h3><a href="/work/trip-social">Trip.Social</a></h3><p>Web Design · 2023</p><p>Trip.social is an experience booking platform for tours, day trips and travel services across Vietnam, Australia, New Zealand and Singapore. I redesigned the whole website, from the home page and destination pages to tour listings and booking. The goal was a cleaner, more inspiring way to discover local experiences and a smoother path from browsing to checkout, across three languages and on any screen.</p></article></main></div></div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
