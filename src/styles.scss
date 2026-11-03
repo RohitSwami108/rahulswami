@@ -473,6 +473,19 @@ h1, h2, h3, h4, h5, h6 {
   animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Top Architectural Scroll Progress Indicator */
+.scroll-progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #c5a880, #10b981, #c5a880);
+  z-index: 100;
+  pointer-events: none;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(197, 168, 128, 0.45);
+}
+
 /* Typing Animation Cursor */
 @keyframes blinkCursor {
   0%, 100% { opacity: 1; }

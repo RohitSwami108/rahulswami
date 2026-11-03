@@ -9,7 +9,7 @@ import { Component, HostListener, Inject, OnDestroy, OnInit, PLATFORM_ID, signal
     <!-- Desktop-only Continuous Architectural Drawing Line Motif -->
     <div 
       *ngIf="isBrowser"
-      class="fixed inset-y-0 left-4 lg:left-8 w-12 pointer-events-none z-30 hidden md:block select-none"
+      class="fixed inset-y-0 left-3 2xl:left-8 w-12 pointer-events-none z-30 hidden xl:block select-none"
       aria-hidden="true"
     >
       <!-- Background Static Guide Grid Line -->

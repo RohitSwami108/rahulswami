@@ -745,12 +745,15 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private renderThreeLoop = (): void => {
     if (!this.renderer || !this.scene || !this.camera) return;
 
-    // Smooth lerp camera towards mouse target
-    this.camera.position.x += (this.targetCamX - this.camera.position.x) * 0.05;
-    this.camera.position.y += (this.targetCamY - this.camera.position.y) * 0.05;
-    this.camera.lookAt(0, 0.9, -0.5);
+    // Performance optimization: only compute WebGL draw call when 3D stage is visible
+    if (this.isThreeStageActive()) {
+      this.camera.position.x += (this.targetCamX - this.camera.position.x) * 0.05;
+      this.camera.position.y += (this.targetCamY - this.camera.position.y) * 0.05;
+      this.camera.lookAt(0, 0.9, -0.5);
 
-    this.renderer.render(this.scene, this.camera);
+      this.renderer.render(this.scene, this.camera);
+    }
+
     this.animFrameId = requestAnimationFrame(this.renderThreeLoop);
   };
 
