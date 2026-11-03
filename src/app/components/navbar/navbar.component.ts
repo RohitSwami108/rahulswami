@@ -32,7 +32,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
               </span>
               <div class="flex items-center gap-1.5 font-mono text-[10px] text-[#9aa0ae]">
                 <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
-                <span class="text-white/90 font-medium">Sketch Spaces</span>
+                <span class="text-white/90 font-medium">Sapras Architects</span>
                 <span class="text-[#616776]">&bull;</span>
                 <span class="text-[#c5a880]">3D Studio</span>
               </div>
@@ -130,7 +130,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
         <div class="p-5 rounded-2xl bg-[#0a0c13]/95 backdrop-blur-2xl border border-white/10 flex flex-col gap-2 font-mono text-xs shadow-2xl">
           <div class="flex items-center gap-2 pb-3 mb-2 border-b border-white/10 text-white font-medium">
             <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
-            <span>Currently practicing at Sketch Spaces</span>
+            <span>Currently practicing at Sapras Architects &amp; Engineers</span>
           </div>
           <a href="#works" (click)="isMobileMenuOpen.set(false)" class="text-[#9aa0ae] hover:text-white py-1.5 px-2 rounded hover:bg-white/5">Selected Works</a>
           <a href="#visualizer-studio" (click)="isMobileMenuOpen.set(false)" class="text-[#9aa0ae] hover:text-white py-1.5 px-2 rounded hover:bg-white/5">2D vs 3D</a>

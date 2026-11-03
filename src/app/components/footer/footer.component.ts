@@ -132,7 +132,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
             <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 font-mono text-xs sm:text-sm text-[#9aa0ae] max-w-2xl leading-relaxed mb-4">
               <span class="text-white font-medium">Interior Designer &amp; 3D Visualizer</span>
               <span class="text-[#616776]">&bull;</span>
-              <span class="text-[#e2cfb6] font-medium">Sketch Spaces (Current Studio)</span>
+              <span class="text-[#e2cfb6] font-medium">Sapras Architects &amp; Engineers Pvt. Ltd. (Current Studio)</span>
               <span class="text-[#616776]">&bull;</span>
               <span class="text-[#10b981] font-medium flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -193,7 +193,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
                 <span class="text-white font-bold font-display text-base tracking-wider uppercase">Rahul Swami</span>
               </div>
               <div class="text-[#9aa0ae] text-xs">
-                Interior Designer &bull; 3D Visualizer &bull; <strong class="text-white font-medium">Sketch Spaces (Current Studio)</strong>
+                Interior Designer &bull; 3D Visualizer &bull; <strong class="text-white font-medium">Sapras Architects &amp; Engineers (Current Studio)</strong>
               </div>
               <div class="text-[11px] text-[#616776] mt-1">
                 Jangpura, New Delhi, India &bull; Available across Delhi NCR

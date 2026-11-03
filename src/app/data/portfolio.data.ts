@@ -17,7 +17,7 @@ export const CONTACT_INFO: ContactInfo = {
   phoneRaw: '9717379245',
   whatsappUrl: 'https://wa.me/919717379245?text=Hello%20Rahul,%20I%20reviewed%20your%20portfolio%20attached%20to%20your%20resume%20and%20would%20love%20to%20connect.',
   summary:
-    'Creative and detail-oriented Interior Designer and 3D Visualizer currently working at Sketch Spaces with 2+ years of professional studio experience across Camara Interiors and Ettore Interior. Skilled in residential interior design, 3D modeling, photorealistic rendering, and 2D technical drawings. Proficient in 3ds Max, Corona Renderer, and AutoCAD, with a strong understanding of space planning, material selection, lighting, and modern interior aesthetics.',
+    'Creative and detail-oriented Interior Designer and 3D Visualizer currently working at Sapras Architects & Engineers Pvt. Ltd. with 2+ years of professional studio experience across Camara Interiors and Ettore Interior. Skilled in residential interior design, 3D modeling, photorealistic rendering, and 2D technical drawings. Proficient in 3ds Max, Corona Renderer, and AutoCAD, with a strong understanding of space planning, material selection, lighting, and modern interior aesthetics.',
   stats: {
     experienceYears: '2+ Yrs',
     projectsCompleted: '3 Studios',
@@ -28,14 +28,14 @@ export const CONTACT_INFO: ContactInfo = {
 
 export const EXPERIENCES: Experience[] = [
   {
-    company: 'Sketch Spaces',
+    company: 'Sapras Architects & Engineers Pvt. Ltd.',
     location: 'New Delhi / NCR',
     role: 'Interior Designer & 3D Visualizer',
     period: 'Present (Current Studio)',
     current: true,
     badge: 'Currently Working',
     summary:
-      'Recently joined the creative design team at Sketch Spaces, contributing to residential spatial concepts, 3D visualization, and technical execution drawings.',
+      'Recently joined the creative design team at Sapras Architects & Engineers Pvt. Ltd., contributing to residential spatial concepts, 3D visualization, and technical execution drawings.',
     responsibilities: [
       'Creating photorealistic 3D interior renders and spatial walkthroughs using Autodesk 3ds Max & Corona Renderer.',
       'Preparing 2D technical working drawings, carpentry joinery elevations, and false ceiling details in AutoCAD.',
@@ -663,7 +663,7 @@ export const PROJECTS_DATA: Project[] = [
 
 export const TESTIMONIALS = [
   {
-    client: 'Design Lead, Sketch Spaces',
+    client: 'Design Lead, Sapras Architects & Engineers',
     role: 'Principal Interior Architect',
     project: 'Residential 3D Visualization & Space Planning',
     feedback:

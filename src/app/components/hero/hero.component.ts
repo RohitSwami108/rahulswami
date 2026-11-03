@@ -94,7 +94,7 @@ export type ViewportPipelineStage = 'wireframe' | 'clay' | 'pbr' | 'corona';
           <div class="flex items-center gap-2.5">
             <span class="inline-flex items-center gap-1.5 text-white font-medium bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/25">
               <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
-              <span class="tracking-wider">SKETCH SPACES</span>
+              <span class="tracking-wider">SAPRAS ARCHITECTS &amp; ENGINEERS</span>
             </span>
             <span class="text-[#616776]">&bull;</span>
             <span class="text-[#e2cfb6] font-medium tracking-wide">CURRENT STUDIO</span>
@@ -144,7 +144,7 @@ export type ViewportPipelineStage = 'wireframe' | 'clay' | 'pbr' | 'corona';
           <!-- Editorial Studio Bio -->
           <p class="text-sm sm:text-lg text-[#9aa0ae] font-normal leading-relaxed max-w-3xl">
             Rahul Swami is an Interior Designer and 3D Visualizer currently practicing at 
-            <span class="text-white font-semibold underline decoration-[#10b981]/50 underline-offset-4">Sketch Spaces</span>, 
+            <span class="text-white font-semibold underline decoration-[#10b981]/50 underline-offset-4">Sapras Architects &amp; Engineers Pvt. Ltd.</span>, 
             with 2+ years of prior studio experience across <em class="text-white not-italic font-medium">Camara Interiors</em> 
             and <em class="text-white not-italic font-medium">Ettore Interior</em>. 
             Crafting photorealistic 3D residential environments in 
@@ -397,7 +397,7 @@ export type ViewportPipelineStage = 'wireframe' | 'clay' | 'pbr' | 'corona';
             <div class="p-4 sm:p-5">
               <span class="text-[#7e879b] block text-[10px] mb-1">[ METRIC // 04 ]</span>
               <div class="text-white font-bold text-lg font-sans">3 Studios</div>
-              <div class="text-[#9aa0ae] text-[11px]">Sketch Spaces &bull; Camara &bull; Ettore</div>
+              <div class="text-[#9aa0ae] text-[11px]">Sapras Architects &bull; Camara &bull; Ettore</div>
             </div>
           </div>
 

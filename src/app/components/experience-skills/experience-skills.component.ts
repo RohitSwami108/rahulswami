@@ -250,7 +250,7 @@ interface TechnicalSpecItem {
               </p>
               <div class="mt-4 font-mono text-xs text-white font-medium flex items-center justify-between">
                 <span>&mdash; Rahul Swami</span>
-                <span class="text-[#10b981] text-[11px]">Sketch Spaces (Current Studio)</span>
+                <span class="text-[#10b981] text-[11px]">Sapras Architects &amp; Engineers Pvt. Ltd. (Current Studio)</span>
               </div>
             </div>
 

@@ -64,7 +64,7 @@ interface CategoryFilterTab {
               Curated Architectural Works
             </h2>
             <p class="text-sm sm:text-base text-[#9aa0ae] max-w-2xl font-normal leading-relaxed">
-              Showcasing residential interior suites, custom modular millwork, and exterior facades created across Sketch Spaces, Camara Interiors, and Ettore Interior. Modeled in 3ds Max, rendered in Corona 11, and detailed in AutoCAD.
+              Showcasing residential interior suites, custom modular millwork, and exterior facades created across Sapras Architects &amp; Engineers, Camara Interiors, and Ettore Interior. Modeled in 3ds Max, rendered in Corona 11, and detailed in AutoCAD.
             </p>
           </div>
 

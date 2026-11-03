@@ -38,7 +38,7 @@ import { Component, Inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 
         <div class="flex items-center gap-2 font-mono text-[9px] text-[#9aa0ae] tracking-widest uppercase">
           <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
-          <span>Sketch Spaces &bull; New Delhi, India</span>
+          <span>Sapras Architects &bull; New Delhi, India</span>
         </div>
 
       </div>

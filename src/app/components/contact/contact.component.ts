@@ -90,7 +90,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
                   Rahul Swami &mdash; Official Resume
                 </h3>
                 <p class="text-[#9aa0ae] text-xs font-sans mb-5 leading-relaxed">
-                  Includes complete studio history across Sketch Spaces (Current Studio), Camara Interiors &amp; Ettore Interior, detailed software credentials, and technical project highlights.
+                  Includes complete studio history across Sapras Architects &amp; Engineers Pvt. Ltd. (Current Studio), Camara Interiors &amp; Ettore Interior, detailed software credentials, and technical project highlights.
                 </p>
                 <a 
                   href="assets/docs/Rahul-Swami-Resume.pdf" 
