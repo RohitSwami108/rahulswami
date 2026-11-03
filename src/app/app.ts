@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { ContactSectionComponent } from './components/contact/contact.component';
+import { CustomCursorComponent } from './components/custom-cursor/custom-cursor.component';
 import { ExperienceSkillsComponent } from './components/experience-skills/experience-skills.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
@@ -17,6 +18,7 @@ import { Project } from './models/portfolio.models';
   standalone: true,
   imports: [
     CommonModule,
+    CustomCursorComponent,
     NavbarComponent,
     HeroComponent,
     ProjectGalleryComponent,

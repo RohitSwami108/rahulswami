@@ -1,38 +1,41 @@
-<main class="min-h-screen relative overflow-x-hidden bg-[#08090c] text-[#f4f4f5]">
-  <!-- Editorial Sticky Floating Navigation -->
+<main class="min-h-screen relative overflow-x-hidden bg-[#07080a] text-[#f4f4f5]">
+  <!-- Desktop Interactive Fluid Cursor -->
+  <app-custom-cursor></app-custom-cursor>
+
+  <!-- Editorial Sticky Floating Navigation with Top Scroll Progress -->
   <app-navbar (openVault)="openVault()"></app-navbar>
 
-  <!-- Cinematic Hero -->
+  <!-- [00] Cinematic Hero with Animated Typing Headline & Coordinate Geometry -->
   <app-hero></app-hero>
 
-  <!-- [01] Curated Works (Editorial Large Cards) -->
+  <!-- [01] Curated Works (Editorial Asymmetric Magazine Grid & Contours) -->
   <app-project-gallery 
     (projectSelected)="openProjectModal($event)"
     (openVault)="openVault()"
   ></app-project-gallery>
 
-  <!-- [02] Interactive 2D CAD vs 3D Corona Visualizer Studio -->
+  <!-- [02] Interactive 2D CAD vs 3D Corona Visualizer Studio & Drafting Grid -->
   <app-visualizer-studio></app-visualizer-studio>
 
-  <!-- [03] Studio Practice, Experience & Background -->
+  <!-- [03] Studio Practice, Technical Timeline & 3D Wireframe Arsenal -->
   <app-experience-skills></app-experience-skills>
 
-  <!-- [04] Studio Deliverables & Core Competencies -->
+  <!-- [04] Studio Deliverables, Architectural Packages & Joinery Stamps -->
   <app-services></app-services>
 
-  <!-- [05] Candidate Contact & Resume Submission -->
+  <!-- [05] Candidate Contact & Compass Arc Geometry -->
   <app-contact></app-contact>
 
   <!-- Minimalist Studio Footer -->
   <app-footer></app-footer>
 
-  <!-- Case Study Lightbox Modal -->
+  <!-- Architectural Case Study Lightbox Modal with Category-Specific Focus -->
   <app-project-modal 
     [project]="selectedProject()" 
     (close)="closeProjectModal()"
   ></app-project-modal>
 
-  <!-- Complete 50-Render Interactive Archive Vault -->
+  <!-- Complete 50-Render Interactive Archive Vault (Masonry & Cinema Views) -->
   <app-render-vault-modal
     [isOpen]="isVaultOpen()"
     (close)="closeVault()"

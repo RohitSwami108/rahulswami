@@ -1,18 +1,18 @@
 /* ==========================================================================
    RAHUL SWAMI — ARCHITECTURAL PORTFOLIO DESIGN SYSTEM
-   Luxury Architectural Editorial & Minimalist CAD Blueprint System
+   Experimental Digital Architecture Studio & Luxury Interior Design Magazine
    ========================================================================== */
 
 :root {
   --bg-deep: #07080a;
   --bg-surface: #0c0e13;
   --bg-elevated: #11141c;
-  --bg-card: rgba(14, 17, 24, 0.75);
-  --bg-card-hover: rgba(19, 23, 33, 0.95);
+  --bg-card: rgba(14, 17, 24, 0.78);
+  --bg-card-hover: rgba(20, 24, 34, 0.96);
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --border-strong: rgba(255, 255, 255, 0.32);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --border-strong: rgba(255, 255, 255, 0.38);
 
   --text-main: #f5f5f7;
   --text-secondary: #9aa0ae;
@@ -22,7 +22,8 @@
   --accent-emerald: #10b981;
   --accent-emerald-glow: rgba(16, 185, 129, 0.18);
   --accent-champagne: #c5a880;
-  --accent-champagne-glow: rgba(197, 168, 128, 0.16);
+  --accent-champagne-light: #e2cfb6;
+  --accent-champagne-glow: rgba(197, 168, 128, 0.18);
 
   --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -69,9 +70,9 @@ body {
     linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     /* Atmospheric Studio Lighting Radial Gradients */
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(197, 168, 128, 0.04), transparent),
-    radial-gradient(circle at 100% 40%, rgba(16, 185, 129, 0.025), transparent 50%),
-    radial-gradient(circle at 0% 70%, rgba(255, 255, 255, 0.02), transparent 50%);
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(197, 168, 128, 0.05), transparent),
+    radial-gradient(circle at 100% 40%, rgba(16, 185, 129, 0.03), transparent 50%),
+    radial-gradient(circle at 0% 70%, rgba(255, 255, 255, 0.025), transparent 50%);
   background-size:
     40px 40px,
     40px 40px,
@@ -89,9 +90,22 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.022;
+  opacity: 0.024;
   z-index: 9999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Scroll Progress Bar at Top */
+.scroll-progress-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #10b981 0%, #c5a880 50%, #ffffff 100%);
+  z-index: 99999;
+  transform-origin: left;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(197, 168, 128, 0.5);
 }
 
 /* Custom Scrollbar */
@@ -140,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 1600px) {
   .portfolio-container {
-    max-width: 1520px;
+    max-width: 1540px;
     padding: 0 2rem;
   }
 }
@@ -162,24 +176,24 @@ h1, h2, h3, h4, h5, h6 {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
 }
 
 /* Section Blueprint Labels */
 .section-label {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--accent-champagne);
   margin-bottom: 0.85rem;
-  background: rgba(197, 168, 128, 0.06);
-  padding: 0.25rem 0.75rem;
+  background: rgba(197, 168, 128, 0.08);
+  padding: 0.3rem 0.85rem;
   border-radius: 4px;
-  border: 1px solid rgba(197, 168, 128, 0.18);
+  border: 1px solid rgba(197, 168, 128, 0.22);
 }
 
 .section-label::before {
@@ -189,35 +203,81 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-/* Oversized Low-Opacity Section Numerals */
+/* ==========================================================================
+   02 — RECOGNIZABLE EDITORIAL BACKGROUND NUMERALS (5–12% Opacity & Strokework)
+   ========================================================================== */
 .section-watermark-number {
   position: absolute;
-  right: 1.5rem;
-  top: 1rem;
   font-family: var(--font-display);
-  font-size: 9rem;
+  font-size: 8rem;
   font-weight: 900;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.018);
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.09);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(197, 168, 128, 0.04) 60%, transparent 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   pointer-events: none;
   user-select: none;
   z-index: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .section-watermark-number {
-    font-size: 13rem;
-    right: 3rem;
+    font-size: 11rem;
   }
+}
+
+@media (min-width: 1024px) {
+  .section-watermark-number {
+    font-size: 15rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .section-watermark-number {
+    font-size: 18rem;
+  }
+}
+
+/* Distinctive Technical Annotations Layer (Architectural Presentation Stamps) */
+.cad-tech-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7e879b;
+  border-left: 2px solid var(--accent-champagne);
+  padding-left: 0.5rem;
+  user-select: none;
+}
+
+.cad-tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  padding: 0.2rem 0.55rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  color: #9aa0ae;
 }
 
 /* Architectural Crosshair Symbols */
 .cad-crosshair {
   position: absolute;
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.45;
+  z-index: 1;
 }
 
 .cad-crosshair::before,
@@ -228,14 +288,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cad-crosshair::before {
-  top: 6px;
+  top: 7px;
   left: 0;
   right: 0;
   height: 1px;
 }
 
 .cad-crosshair::after {
-  left: 6px;
+  left: 7px;
   top: 0;
   bottom: 0;
   width: 1px;
@@ -260,14 +320,14 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
   pointer-events: none;
 }
 
 .premium-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
-  box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
 }
 
@@ -413,12 +473,68 @@ h1, h2, h3, h4, h5, h6 {
   animation: modalScaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Utility Animations */
-@keyframes pulseSubtle {
+/* Typing Animation Cursor */
+@keyframes blinkCursor {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50% { opacity: 0; }
 }
 
-.animate-pulse-subtle {
-  animation: pulseSubtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.typing-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 1.15em;
+  background-color: var(--accent-champagne);
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  animation: blinkCursor 0.9s infinite cubic-bezier(1, 0, 0, 1);
+}
+
+/* Custom Interactive Cursor (Desktop Only) */
+.custom-cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #f5f5f7;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100000;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-follower,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .typing-cursor {
+    animation: none;
+    opacity: 1;
+  }
 }

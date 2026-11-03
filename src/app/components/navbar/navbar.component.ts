@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, HostListener, Output, signal } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, HostListener, Inject, Output, PLATFORM_ID, signal } from '@angular/core';
 import { CONTACT_INFO } from '../../data/portfolio.data';
 
 @Component({
@@ -7,6 +7,9 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
   standalone: true,
   imports: [CommonModule],
   template: `
+    <!-- 11: Top Architectural Scroll Progress Indicator -->
+    <div class="scroll-progress-line" [style.width.%]="scrollPercent()"></div>
+
     <header class="fixed top-0 left-0 right-0 z-50 py-3.5 transition-all duration-300">
       <div class="portfolio-container">
         <nav class="flex items-center justify-between px-5 py-3 rounded-full bg-[#0a0c13]/85 backdrop-blur-2xl border border-white/[0.1] shadow-[0_12px_40px_-10px_rgba(0,0,0,0.85)]">
@@ -100,15 +103,31 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
 export class NavbarComponent {
   contact = CONTACT_INFO;
   isMobileMenuOpen = signal(false);
+  scrollPercent = signal(0);
+  private isBrowser = false;
 
   @Output() openVault = new EventEmitter<void>();
 
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   toggleMobileMenu(): void {
-    this.isMobileMenuOpen.update((v) => !v);
+    this.isMobileMenuOpen.update(v => !v);
   }
 
   onMobileVaultClick(): void {
     this.isMobileMenuOpen.set(false);
     this.openVault.emit();
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (!this.isBrowser) return;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+      const p = (window.scrollY / docHeight) * 100;
+      this.scrollPercent.set(Math.min(100, Math.max(0, p)));
+    }
   }
 }

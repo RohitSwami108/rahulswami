@@ -38,18 +38,22 @@ import { Project } from '../../models/portfolio.models';
             <button 
               type="button"
               (click)="goToPrevProject()"
-              class="px-2.5 py-1.5 rounded bg-white/[0.04] hover:bg-white/10 text-white font-mono text-xs border border-white/10 transition-colors cursor-pointer"
+              class="px-3 py-1.5 rounded bg-white/[0.04] hover:bg-white/10 text-white font-mono text-xs border border-white/10 transition-colors cursor-pointer flex items-center gap-1.5"
               title="Previous Case Study (ArrowLeft)"
+              data-cursor="PREV"
             >
-              &larr; Prev
+              <span>&larr;</span>
+              <span>Prev Case Study</span>
             </button>
             <button 
               type="button"
               (click)="goToNextProject()"
-              class="px-2.5 py-1.5 rounded bg-white/[0.04] hover:bg-white/10 text-white font-mono text-xs border border-white/10 transition-colors cursor-pointer"
+              class="px-3 py-1.5 rounded bg-white/[0.04] hover:bg-white/10 text-white font-mono text-xs border border-white/10 transition-colors cursor-pointer flex items-center gap-1.5"
               title="Next Case Study (ArrowRight)"
+              data-cursor="NEXT"
             >
-              Next &rarr;
+              <span>Next Case Study</span>
+              <span>&rarr;</span>
             </button>
 
             <!-- Close Button -->
@@ -69,10 +73,13 @@ import { Project } from '../../models/portfolio.models';
 
         <!-- Project Hero Header -->
         <div class="my-6">
+          <div class="flex items-center gap-2 text-xs font-mono text-[#c5a880] mb-1">
+            <span>[ FOCUS: {{ getCategoryFocusTitle(project.category) }} ]</span>
+          </div>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight-custom font-display mb-2">
             {{ project.title }}
           </h2>
-          <p class="text-sm sm:text-base text-[#c5a880] font-normal leading-relaxed">
+          <p class="text-sm sm:text-base text-[#e2cfb6] font-normal leading-relaxed">
             {{ project.subtitle }}
           </p>
         </div>
@@ -83,17 +90,17 @@ import { Project } from '../../models/portfolio.models';
             <img 
               [src]="activeImage()" 
               [alt]="project.title"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01] block"
             />
 
             <!-- Top Left HUD -->
-            <div class="absolute top-4 left-4 bg-black/80 backdrop-blur-md px-3.5 py-1.5 rounded border border-white/15 text-xs font-mono text-white flex items-center gap-2">
+            <div class="absolute top-4 left-4 bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded border border-white/15 text-xs font-mono text-white flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
               <span>CORONA 11 &bull; 4K UHD PHOTOREALISTIC RENDER</span>
             </div>
 
             <!-- Bottom Left HUD: Camera Spec -->
-            <div *ngIf="project.specs.camera" class="absolute bottom-4 left-4 hidden sm:block bg-black/80 backdrop-blur-md px-3 py-1 rounded text-xs font-mono text-[#9aa0ae] border border-white/15">
+            <div *ngIf="project.specs.camera" class="absolute bottom-4 left-4 hidden sm:block bg-black/85 backdrop-blur-md px-3 py-1 rounded text-xs font-mono text-[#9aa0ae] border border-white/15">
               {{ project.specs.camera }}
             </div>
 
@@ -102,9 +109,10 @@ import { Project } from '../../models/portfolio.models';
               type="button"
               (click)="toggleFullscreenImage()"
               class="absolute bottom-4 right-4 bg-white/10 hover:bg-white text-white hover:text-black backdrop-blur-md px-3.5 py-1.5 rounded text-xs font-mono font-medium border border-white/20 transition-colors cursor-pointer flex items-center gap-1.5"
+              data-cursor="VIEW"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"></path><path d="M9 21H3v-6"></path><path d="M21 3l-7 7"></path><path d="M3 21l7-7"></path></svg>
-              <span>View Fullscreen</span>
+              <span>View Fullscreen Lightbox</span>
             </button>
           </div>
 
@@ -126,6 +134,17 @@ import { Project } from '../../models/portfolio.models';
               </div>
             </button>
           </div>
+        </div>
+
+        <!-- 10: UNIQUE DISCIPLINE-SPECIFIC ARCHITECTURAL FOCUS CARD -->
+        <div class="mb-8 p-5 sm:p-6 rounded-xl border border-white/10 bg-[#07090e]">
+          <div class="flex items-center gap-2 font-mono text-xs text-[#c5a880] mb-2 font-bold uppercase">
+            <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+            <span>Specialized Discipline Focus: {{ project.categoryLabel }}</span>
+          </div>
+          <p class="text-xs sm:text-sm text-[#d1d5db] leading-relaxed">
+            {{ getCategoryFocusDescription(project.category) }}
+          </p>
         </div>
 
         <!-- Comprehensive Architectural Case Study Breakdown -->
@@ -353,6 +372,44 @@ export class ProjectModalComponent {
     const currentIndex = this.projects.findIndex(p => p.id === this.project?.id);
     const prevIndex = (currentIndex - 1 + this.projects.length) % this.projects.length;
     this.project = this.projects[prevIndex];
+  }
+
+  getCategoryFocusTitle(category: string): string {
+    switch (category) {
+      case 'bedroom':
+        return 'Mood, Lighting Atmosphere & Bouclé/Velvet Detailing';
+      case 'living':
+        return 'Spatial Planning, Architectural Arches & Media Wall Console';
+      case 'wardrobe':
+        return 'Carcass Joinery, Fluted Glass & Hafele/Hettich Hardware';
+      case 'kitchen':
+        return 'Ergonomics, Handle-less Gola Profiles & Quartz Detailing';
+      case 'exterior':
+        return 'Facade Proportions, Exterior Dusk Lighting & Stone Cladding';
+      case 'drawings':
+        return 'AutoCAD Working Drawing Sheets & Millimeter Execution Details';
+      default:
+        return 'Spatial Geometry, Lighting & Joinery Integration';
+    }
+  }
+
+  getCategoryFocusDescription(category: string): string {
+    switch (category) {
+      case 'bedroom':
+        return 'Focuses on creating intimate, sensory bedroom sanctuaries. Features bespoke curved wingback headboards, acoustic fluted slats, 3000K concealed warm cove illumination, and balanced two-point camera compositions in Corona Renderer.';
+      case 'living':
+        return 'Emphasizes spacious circulation, sweeping continuous architectural arches, warm perimeter LED channels, and natural white oak floating credenzas designed for seamless residential entertaining.';
+      case 'wardrobe':
+        return 'Details 18mm BWR plywood carcass joinery, aluminum slim bronze profiles, tinted smoked glass shutters, and sensor-activated internal illumination rods for high-end walk-in wardrobes.';
+      case 'kitchen':
+        return 'Focuses on working ergonomics, handle-less J-pull and Gola aluminum profiles, lift-up fluted glass wall shutters, seamless quartz backsplashes, and integrated appliance fitments.';
+      case 'exterior':
+        return 'Highlights 3-storey contemporary facade geometry, travertine stone cladding, vertical louvers, perimeter dusk exterior illumination, and structural framing rendered with volumetric sky models.';
+      case 'drawings':
+        return 'Demonstrates millimeter-accurate technical working drawings produced in AutoCAD 2025, detailing carpenter fabrication elevations, sectional joinery, false ceiling levels, and electrical point markers.';
+      default:
+        return 'Cohesive spatial integration combining photorealistic 3D rendering with on-site AutoCAD technical execution.';
+    }
   }
 
   @HostListener('window:keydown', ['$event'])

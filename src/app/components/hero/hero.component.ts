@@ -1,6 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild, signal } from '@angular/core';
-import { gsap } from 'gsap';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnDestroy, PLATFORM_ID, ViewChild, computed, signal } from '@angular/core';
 import { CONTACT_INFO } from '../../data/portfolio.data';
 
 interface HeroSlide {
@@ -25,24 +24,59 @@ interface HeroSlide {
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section id="hero" #heroSection class="pt-28 pb-16 md:pt-36 md:pb-24 border-b border-white/[0.07] relative overflow-hidden">
+    <section 
+      id="hero" 
+      #heroSection
+      (mousemove)="onSectionMouseMove($event)"
+      (mouseleave)="onSectionMouseLeave()"
+      class="pt-28 pb-16 md:pt-36 md:pb-28 border-b border-white/[0.08] relative overflow-hidden"
+    >
       
-      <!-- Architectural Section Watermark -->
-      <div class="section-watermark-number">00</div>
+      <!-- 02: RECOGNIZABLE EDITORIAL BACKGROUND NUMERAL (8% Opacity) -->
+      <div 
+        class="section-watermark-number top-4 right-4 sm:right-12 md:right-20"
+        [style.transform]="'translateY(' + parallaxOffset() * 0.15 + 'px)'"
+      >
+        00
+      </div>
 
-      <!-- Subtle Architectural Crosshairs -->
+      <!-- 03: UNIQUE ARCHITECTURAL BACKGROUND PATTERN (Hero Geometry & Coordinate Network) -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs>
+            <pattern id="heroGridPattern" width="160" height="160" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="160" y2="0" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+              <line x1="0" y1="0" x2="0" y2="160" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+              <circle cx="80" cy="80" r="1.5" fill="rgba(197,168,128,0.2)"/>
+              <path d="M 0,80 L 160,80 M 80,0 L 80,160" stroke="rgba(255,255,255,0.015)" stroke-dasharray="4,6"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#heroGridPattern)" />
+          
+          <!-- Geometric Blueprint Compass Arcs -->
+          <circle cx="85%" cy="30%" r="280" fill="none" stroke="rgba(197,168,128,0.06)" stroke-width="1" stroke-dasharray="8,12"/>
+          <circle cx="85%" cy="30%" r="420" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+          <line x1="60%" y1="30%" x2="100%" y2="30%" stroke="rgba(197,168,128,0.08)" stroke-width="1" stroke-dasharray="3,6"/>
+          
+          <!-- Architectural Coordinate Crosshairs -->
+          <circle cx="15%" cy="75%" r="180" fill="none" stroke="rgba(16,185,129,0.04)" stroke-width="1"/>
+          <line x1="0" y1="75%" x2="35%" y2="75%" stroke="rgba(16,185,129,0.06)" stroke-width="1" stroke-dasharray="5,8"/>
+        </svg>
+      </div>
+
+      <!-- Architectural Crosshairs in Corners -->
       <div class="cad-crosshair top-8 left-8"></div>
       <div class="cad-crosshair top-8 right-8"></div>
       <div class="cad-crosshair bottom-8 left-8"></div>
       <div class="cad-crosshair bottom-8 right-8"></div>
 
-      <!-- Subtle Ambient Lighting Glow -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-b from-[#c5a880]/[0.05] via-[#10b981]/[0.02] to-transparent rounded-full blur-3xl pointer-events-none"></div>
+      <!-- Subtle Atmospheric Ambient Glow -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[420px] bg-gradient-to-b from-[#c5a880]/[0.06] via-[#10b981]/[0.025] to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="portfolio-container relative z-10">
         
         <!-- Architectural Coordinate & Studio Status Bar -->
-        <div #metaBar class="flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] text-[#9aa0ae] mb-10 pb-4 border-b border-white/[0.07]">
+        <div class="flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] text-[#9aa0ae] mb-10 pb-4 border-b border-white/[0.08]">
           <div class="flex items-center gap-2.5">
             <span class="inline-flex items-center gap-1.5 text-white font-medium bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/25">
               <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
@@ -55,30 +89,47 @@ interface HeroSlide {
           </div>
 
           <div class="flex items-center gap-3 text-[10px] text-[#7e879b]">
-            <span class="hidden md:inline">COORDINATES:</span>
+            <span class="hidden md:inline text-white/50">ARCHITECTURAL COORDINATES:</span>
             <span class="text-[#c5a880] font-mono tracking-widest">N 28° 35' 12" / E 77° 14' 55"</span>
             <span class="text-[#616776]">&bull;</span>
-            <span class="text-white/80">REF: DEL-NCR</span>
+            <span class="text-white/80">DATUM: DEL-NCR</span>
           </div>
         </div>
 
-        <!-- Main Headline & Subtitle -->
+        <!-- 01: CREATIVE TYPOGRAPHY & ANIMATED TYPING ENGINE -->
         <div class="max-w-5xl mb-12">
-          <div class="section-label mb-4">
-            [ 00 // ARCHITECTURAL VISUALIZER &amp; INTERIOR DESIGNER ]
+          
+          <!-- Section Technical Stamp -->
+          <div class="flex items-center gap-3 mb-4">
+            <div class="section-label">
+              [ 00 // ARCHITECTURAL VISUALIZER &amp; DESIGNER ]
+            </div>
+            <div class="hidden sm:inline-flex cad-tech-stamp">
+              DWG: RS-2026 // MASTER ARCHIVE
+            </div>
           </div>
           
-          <h1 #heroHeading class="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#f5f5f7] tracking-tight-custom leading-[1.08] mb-7 font-display">
-            Designing spaces. <br class="hidden sm:inline"/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#c5a880]">
-              Visualizing possibilities.
-            </span> <br class="hidden sm:inline"/>
-            <span class="text-[#9aa0ae]">Detailing every dimension.</span>
+          <!-- Expressive Editorial Headline -->
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#f5f5f7] tracking-tight-custom leading-[1.08] mb-6 font-display">
+            Transforming spaces <br class="hidden sm:inline"/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#f5f5f7] to-[#c5a880]">
+              into experiences.
+            </span>
           </h1>
 
-          <p #heroBio class="text-sm sm:text-lg text-[#9aa0ae] font-normal leading-relaxed max-w-3xl">
+          <!-- Continuous Character-by-Character Typing Presentation (Zero Layout Jump) -->
+          <div class="h-10 sm:h-12 flex items-center font-mono text-lg sm:text-2xl lg:text-3xl font-semibold mb-6 overflow-hidden">
+            <span class="text-[#9aa0ae] mr-3 select-none">Specializing as:</span>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#c5a880] via-[#e2cfb6] to-[#10b981] inline-block tracking-tight font-display">
+              {{ typedText() }}
+            </span>
+            <span class="typing-cursor"></span>
+          </div>
+
+          <!-- Editorial Studio Bio -->
+          <p class="text-sm sm:text-lg text-[#9aa0ae] font-normal leading-relaxed max-w-3xl">
             Rahul Swami is an Interior Designer and 3D Visualizer currently practicing at 
-            <span class="text-white font-semibold underline decoration-[#10b981]/40 underline-offset-4">Sketch Spaces</span>, 
+            <span class="text-white font-semibold underline decoration-[#10b981]/50 underline-offset-4">Sketch Spaces</span>, 
             with 2+ years of prior studio experience across <em class="text-white not-italic font-medium">Camara Interiors</em> 
             and <em class="text-white not-italic font-medium">Ettore Interior</em>. 
             Crafting photorealistic 3D residential environments in 
@@ -88,8 +139,8 @@ interface HeroSlide {
         </div>
 
         <!-- Action CTAs -->
-        <div #heroCtas class="flex flex-wrap items-center gap-3.5 mb-14">
-          <a href="#works" class="btn-primary-action">
+        <div class="flex flex-wrap items-center gap-3.5 mb-14">
+          <a href="#works" class="btn-primary-action" data-cursor="EXPLORE">
             <span>Explore Selected Works</span>
             <span class="font-mono text-xs">&darr;</span>
           </a>
@@ -99,6 +150,7 @@ interface HeroSlide {
             target="_blank" 
             download="Rahul-Swami-Resume.pdf"
             class="btn-ghost-action"
+            data-cursor="DOWNLOAD"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             <span>Download Official Resume (PDF)</span>
@@ -107,6 +159,7 @@ interface HeroSlide {
           <a 
             href="#visualizer-studio" 
             class="btn-ghost-action"
+            data-cursor="INSPECT"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg>
             <span>Inspect 2D CAD vs 3D Corona</span>
@@ -116,27 +169,39 @@ interface HeroSlide {
             [href]="contact.whatsappUrl"
             target="_blank"
             class="btn-emerald-action"
+            data-cursor="CHAT"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <span>Direct WhatsApp Inquiry</span>
           </a>
         </div>
 
-        <!-- Cinematic Large Architectural Viewport with Live Technical HUD -->
-        <div #heroViewport class="premium-card group relative">
+        <!-- 04: MOUSE-PARALLAX ARCHITECTURAL VIEWPORT WITH HUD METADATA -->
+        <div 
+          class="premium-card group relative transition-transform duration-300 ease-out"
+          [style.transform]="tiltTransform()"
+          data-cursor="VIEW"
+        >
           
-          <!-- Image Viewport -->
-          <div class="relative aspect-[16/9] sm:aspect-[21/10] overflow-hidden bg-black">
+          <!-- Image Viewport Container with Guaranteed Responsive Min-Height -->
+          <div class="relative aspect-[16/9] sm:aspect-[21/10] min-h-[380px] sm:min-h-[480px] lg:min-h-[580px] overflow-hidden bg-[#0c0e13]">
+            
+            <!-- Real High-Res 4K Corona Render -->
             <img 
               [src]="activeSlide().image" 
               [alt]="activeSlide().title"
-              class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.02] block select-none"
               [style.filter]="lightingFilter()"
             />
+
+            <!-- Subtle Vignette & Gradient Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-[#07080a]/90 via-black/15 to-[#07080a]/40 pointer-events-none"></div>
 
             <!-- Top Left HUD: Camera Spec -->
-            <div class="absolute top-4 sm:top-6 left-4 sm:left-6 flex flex-col gap-1.5 pointer-events-none">
+            <div class="absolute top-4 sm:top-6 left-4 sm:left-6 flex flex-col gap-1.5 pointer-events-none z-10">
               <div class="bg-[#07080a]/85 backdrop-blur-md px-3 py-1.5 rounded border border-white/10 flex items-center gap-2 text-xs font-mono text-white/95">
                 <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
                 <span>CORONA_PHYSICAL_CAM // {{ activeSlide().camData.focal }}</span>
@@ -147,7 +212,7 @@ interface HeroSlide {
             </div>
 
             <!-- Top Right HUD: Lighting Mode & Engine Tag -->
-            <div class="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-center gap-2">
+            <div class="absolute top-4 sm:top-6 right-4 sm:right-6 flex items-center gap-2 z-10">
               <!-- Day/Night Quick Atmosphere Toggle -->
               <div class="bg-[#07080a]/85 backdrop-blur-md p-1 rounded border border-white/10 flex items-center gap-1 font-mono text-[10px]">
                 <button
@@ -180,14 +245,14 @@ interface HeroSlide {
             </div>
 
             <!-- Bottom Left HUD: Material Callout -->
-            <div class="hidden lg:block absolute bottom-24 left-6 pointer-events-none">
+            <div class="hidden lg:block absolute bottom-24 left-6 pointer-events-none z-10">
               <div class="bg-[#07080a]/70 backdrop-blur-md px-2.5 py-1 rounded border border-white/10 text-[10px] font-mono text-[#9aa0ae]">
                 <span>PBR: {{ activeSlide().camData.material }}</span>
               </div>
             </div>
 
             <!-- Bottom Caption & Perspective Switcher -->
-            <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4 z-10">
               <div>
                 <span class="font-mono text-[11px] text-[#c5a880] uppercase tracking-wider block mb-1">
                   {{ activeSlide().category }} &bull; {{ activeSlide().location }}
@@ -216,25 +281,25 @@ interface HeroSlide {
           </div>
         </div>
 
-        <!-- Architectural Metrics & Verification Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 mt-10 border-t border-white/[0.07] font-mono">
+        <!-- 02: Architectural Metrics & Technical Annotations Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 mt-10 border-t border-white/[0.08] font-mono">
           <div class="border-l border-white/[0.08] pl-4">
-            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC 01 ]</div>
+            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC // 01 ]</div>
             <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-display">2+ Years</div>
             <div class="text-xs text-[#9aa0ae] mt-1">Professional Studio Practice</div>
           </div>
           <div class="border-l border-white/[0.08] pl-4">
-            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC 02 ]</div>
+            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC // 02 ]</div>
             <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-display">50+ Works</div>
             <div class="text-xs text-[#9aa0ae] mt-1">Corona 11 4K Master Vault</div>
           </div>
           <div class="border-l border-white/[0.08] pl-4">
-            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC 03 ]</div>
+            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC // 03 ]</div>
             <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-display">100% CAD</div>
             <div class="text-xs text-[#9aa0ae] mt-1">Millimeter Execution Sets</div>
           </div>
           <div class="border-l border-white/[0.08] pl-4">
-            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC 04 ]</div>
+            <div class="text-[10px] text-[#c5a880] uppercase tracking-widest">[ METRIC // 04 ]</div>
             <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-display">3 Studios</div>
             <div class="text-xs text-[#9aa0ae] mt-1">Sketch Spaces &bull; Camara &bull; Ettore</div>
           </div>
@@ -245,18 +310,35 @@ interface HeroSlide {
   `,
   styles: [],
 })
-export class HeroComponent implements AfterViewInit {
+export class HeroComponent implements AfterViewInit, OnDestroy {
   contact = CONTACT_INFO;
   activeSlideIndex = signal(0);
   lightingMode = signal<'warm' | 'daylight'>('warm');
 
-  @ViewChild('heroHeading') heroHeading!: ElementRef<HTMLHeadingElement>;
-  @ViewChild('heroBio') heroBio!: ElementRef<HTMLParagraphElement>;
-  @ViewChild('heroCtas') heroCtas!: ElementRef<HTMLDivElement>;
-  @ViewChild('heroViewport') heroViewport!: ElementRef<HTMLDivElement>;
-  @ViewChild('metaBar') metaBar!: ElementRef<HTMLDivElement>;
+  // Animated Typing Signals
+  typedText = signal('');
+  private phrases = [
+    'Interior Designer',
+    '3D Visualizer',
+    'Architectural Storyteller',
+    'Spatial Design Enthusiast',
+    'Technical Drawing Specialist',
+    'Material & Lighting Explorer',
+  ];
+  private currentPhraseIndex = 0;
+  private isDeleting = false;
+  private typingTimer: any = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  // Desktop Mouse Tilt Parallax
+  tiltX = signal(0);
+  tiltY = signal(0);
+  parallaxOffset = signal(0);
+
+  private isBrowser = false;
+
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
 
   slides: HeroSlide[] = [
     {
@@ -325,7 +407,7 @@ export class HeroComponent implements AfterViewInit {
     },
   ];
 
-  activeSlide = () => this.slides[this.activeSlideIndex()];
+  activeSlide = computed(() => this.slides[this.activeSlideIndex()] || this.slides[0]);
 
   lightingFilter(): string {
     return this.lightingMode() === 'warm'
@@ -333,57 +415,78 @@ export class HeroComponent implements AfterViewInit {
       : 'contrast(1.05) brightness(1.06) saturate(0.96)';
   }
 
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      try {
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tiltTransform = computed(() => {
+    if (this.tiltX() === 0 && this.tiltY() === 0) return 'none';
+    return `perspective(1000px) rotateX(${this.tiltY()}deg) rotateY(${this.tiltX()}deg)`;
+  });
 
-        tl.from(this.metaBar.nativeElement, {
-          opacity: 0,
-          y: -10,
-          duration: 0.6,
-        })
-          .from(
-            this.heroHeading.nativeElement,
-            {
-              opacity: 0,
-              y: 25,
-              duration: 0.8,
-            },
-            '-=0.3'
-          )
-          .from(
-            this.heroBio.nativeElement,
-            {
-              opacity: 0,
-              y: 20,
-              duration: 0.7,
-            },
-            '-=0.5'
-          )
-          .from(
-            this.heroCtas.nativeElement,
-            {
-              opacity: 0,
-              y: 15,
-              duration: 0.6,
-            },
-            '-=0.4'
-          )
-          .from(
-            this.heroViewport.nativeElement,
-            {
-              opacity: 0,
-              scale: 0.98,
-              y: 30,
-              duration: 1.0,
-            },
-            '-=0.4'
-          );
-      } catch (err) {
-        // Fallback gracefully if GSAP encounters any environment constraint
-        console.warn('Hero GSAP initialization notice:', err);
-      }
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.initTypingLoop();
     }
+  }
+
+  ngOnDestroy(): void {
+    if (this.typingTimer) {
+      clearTimeout(this.typingTimer);
+    }
+  }
+
+  private initTypingLoop(): void {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.typedText.set(this.phrases[0]);
+      return;
+    }
+
+    const typeStep = () => {
+      const fullPhrase = this.phrases[this.currentPhraseIndex];
+      const currentText = this.typedText();
+
+      if (this.isDeleting) {
+        this.typedText.set(fullPhrase.substring(0, currentText.length - 1));
+        if (this.typedText() === '') {
+          this.isDeleting = false;
+          this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
+          this.typingTimer = setTimeout(typeStep, 450);
+          return;
+        }
+        this.typingTimer = setTimeout(typeStep, 35);
+      } else {
+        this.typedText.set(fullPhrase.substring(0, currentText.length + 1));
+        if (this.typedText() === fullPhrase) {
+          this.isDeleting = true;
+          this.typingTimer = setTimeout(typeStep, 2200); // hold phrase
+          return;
+        }
+        this.typingTimer = setTimeout(typeStep, 65);
+      }
+    };
+
+    typeStep();
+  }
+
+  onSectionMouseMove(e: MouseEvent): void {
+    if (!this.isBrowser || window.innerWidth < 1024) return;
+    const { clientX, clientY } = e;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const deltaX = (clientX - centerX) / centerX;
+    const deltaY = (clientY - centerY) / centerY;
+
+    // Subtle restrained tilt: max 2.5 degrees
+    this.tiltX.set(Math.round(deltaX * 2.5 * 10) / 10);
+    this.tiltY.set(Math.round(-deltaY * 2.0 * 10) / 10);
+  }
+
+  onSectionMouseLeave(): void {
+    this.tiltX.set(0);
+    this.tiltY.set(0);
+  }
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    if (!this.isBrowser) return;
+    this.parallaxOffset.set(window.scrollY);
   }
 }
