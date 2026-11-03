@@ -39,6 +39,9 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
           <div class="hidden lg:flex items-center gap-6 font-mono text-xs text-[#9aa0ae]">
             <a href="#works" class="hover:text-white transition-colors">Selected Works</a>
             <a href="#visualizer-studio" class="hover:text-white transition-colors">2D vs 3D</a>
+            <a href="#about" class="hover:text-white transition-colors">Studio Career</a>
+            <a href="#materials" class="hover:text-white transition-colors text-[#c5a880]">Material Studio</a>
+            <a href="#services" class="hover:text-white transition-colors">Deliverables</a>
             <button 
               type="button" 
               (click)="openVault.emit()" 
@@ -46,8 +49,6 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
             >
               50-Render Vault
             </button>
-            <a href="#about" class="hover:text-white transition-colors">Studio Career</a>
-            <a href="#services" class="hover:text-white transition-colors">Deliverables</a>
             <a href="#contact" class="hover:text-white transition-colors">Contact</a>
           </div>
 
@@ -88,6 +89,9 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
           </div>
           <a href="#works" (click)="isMobileMenuOpen.set(false)" class="text-[#9aa0ae] hover:text-white py-1">Selected Works</a>
           <a href="#visualizer-studio" (click)="isMobileMenuOpen.set(false)" class="text-[#9aa0ae] hover:text-white py-1">2D vs 3D</a>
+          <a href="#about" (click)="isMobileMenuOpen.set(false)" class="text-[#9aa0ae] hover:text-white py-1">Studio Career</a>
+          <a href="#materials" (click)="isMobileMenuOpen.set(false)" class="text-[#c5a880] hover:text-white py-1">Material Studio</a>
+          <a href="#services" (click)="isMobileMenuOpen.set(false)" class="text-[#9aa0ae] hover:text-white py-1">Deliverables</a>
           <button type="button" (click)="onMobileVaultClick()" class="text-left text-[#9aa0ae] hover:text-[#c5a880] py-1 font-mono text-xs bg-transparent border-none">
             50-Render Vault
           </button>

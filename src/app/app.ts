@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { ArchitecturalSpineComponent } from './components/architectural-spine/architectural-spine.component';
 import { ContactSectionComponent } from './components/contact/contact.component';
 import { CustomCursorComponent } from './components/custom-cursor/custom-cursor.component';
 import { ExperienceSkillsComponent } from './components/experience-skills/experience-skills.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeroComponent } from './components/hero/hero.component';
+import { MaterialLightingStudioComponent } from './components/material-lighting-studio/material-lighting-studio.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProjectGalleryComponent } from './components/project-gallery/project-gallery.component';
 import { ProjectModalComponent } from './components/project-modal/project-modal.component';
@@ -19,11 +21,13 @@ import { Project } from './models/portfolio.models';
   imports: [
     CommonModule,
     CustomCursorComponent,
+    ArchitecturalSpineComponent,
     NavbarComponent,
     HeroComponent,
     ProjectGalleryComponent,
     VisualizerStudioComponent,
     ExperienceSkillsComponent,
+    MaterialLightingStudioComponent,
     ServicesComponent,
     ContactSectionComponent,
     FooterComponent,

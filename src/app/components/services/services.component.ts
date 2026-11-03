@@ -14,12 +14,12 @@ interface VisualService extends Service {
   template: `
     <section id="services" class="py-24 md:py-32 border-b border-white/[0.08] relative overflow-hidden">
       
-      <!-- 02: RECOGNIZABLE EDITORIAL BACKGROUND NUMERAL (8% Opacity, Left-Aligned) -->
+      <!-- 05: RECOGNIZABLE EDITORIAL BACKGROUND NUMERAL (8% Opacity, Left-Aligned) -->
       <div 
         class="section-watermark-number top-6 left-6 sm:left-14 md:left-20"
         [style.transform]="'translateY(' + (parallaxOffset() - 3200) * 0.12 + 'px)'"
       >
-        04
+        05
       </div>
 
       <!-- 03: UNIQUE ARCHITECTURAL BACKGROUND PATTERN (Drawing Sheet Graphic Stamps & Modular Grids) -->
@@ -49,7 +49,7 @@ interface VisualService extends Service {
         <div class="max-w-4xl mb-14">
           <div class="flex items-center gap-3 mb-3">
             <div class="section-label">
-              [ 04 // STUDIO DELIVERABLES &amp; CAPABILITIES ]
+              [ 05 // STUDIO DELIVERABLES &amp; CAPABILITIES ]
             </div>
             <span class="hidden sm:inline-flex cad-tech-stamp">
               SPECIFICATION PACKAGES

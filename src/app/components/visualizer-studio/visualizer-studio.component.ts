@@ -10,14 +10,20 @@ interface VisualizerSubject {
   location: string;
   notes: string;
   cameraInfo: string;
+  stages: {
+    wireframeSvg: string;
+    description: string;
+  };
 }
+
+export type TransformStage = 'cad-2d' | 'wireframe-3d' | 'clay-3d' | 'corona-final';
 
 @Component({
   selector: 'app-visualizer-studio',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section id="visualizer-studio" class="py-24 md:py-32 border-b border-white/[0.08] relative overflow-hidden">
+    <section id="visualizer-studio" class="py-24 md:py-32 border-b border-white/[0.08] relative overflow-hidden bg-[#07080b]">
       
       <!-- 02: RECOGNIZABLE EDITORIAL BACKGROUND NUMERAL (8% Opacity, Left-Aligned for Editorial Asymmetry) -->
       <div 
@@ -58,10 +64,10 @@ interface VisualizerSubject {
         <div class="max-w-4xl mb-12">
           <div class="flex items-center gap-3 mb-3">
             <div class="section-label">
-              [ 02 // TECHNICAL FIDELITY: 2D AUTOCAD VS 3D CORONA ]
+              [ 02 // TECHNICAL ACCURACY: 2D AUTOCAD TO 3D CORONA ]
             </div>
             <span class="hidden sm:inline-flex cad-tech-stamp">
-              PRECISION RATIO: 1:1 EXECUTION
+              PRECISION RATIO: 1:1 SITE EXECUTION
             </span>
           </div>
 
@@ -132,10 +138,26 @@ interface VisualizerSubject {
 
           </div>
 
+          <!-- Transformation Pipeline Steps Pills -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-4 font-mono text-xs text-[#9aa0ae]">
+            <div class="flex items-center gap-2">
+              <span class="text-white font-bold uppercase text-[10px] tracking-wider">PIPELINE TRANSFORMATION:</span>
+              <span class="bg-white/5 px-2 py-0.5 rounded border border-white/10 text-[10px]">
+                1. AutoCAD 2D Vector &rarr; 2. Poly Modeling &rarr; 3. PBR Shaders &rarr; 4. Corona 4K
+              </span>
+            </div>
+
+            <!-- Live Slider Position Tag -->
+            <div class="text-[11px] text-[#c5a880] flex items-center gap-1.5">
+              <span>CAD SPLIT:</span>
+              <span class="font-bold font-mono">{{ sliderPosition() }}% 2D / {{ 100 - sliderPosition() }}% 3D</span>
+            </div>
+          </div>
+
           <!-- The Split Comparison Viewport with Drag Cursor -->
           <div 
             #comparisonContainer
-            class="comparison-container relative mt-6 rounded-xl overflow-hidden select-none cursor-ew-resize aspect-[16/9] sm:aspect-[21/10] bg-black shadow-2xl border border-white/10 group"
+            class="comparison-container relative mt-4 rounded-xl overflow-hidden select-none cursor-ew-resize aspect-[16/9] sm:aspect-[21/10] bg-black shadow-2xl border border-white/10 group"
             (mousedown)="startDrag($event)"
             (touchstart)="startDragTouch($event)"
             data-cursor="DRAG"
@@ -153,6 +175,13 @@ interface VisualizerSubject {
               <div class="absolute top-4 right-4 bg-black/85 backdrop-blur-md px-3.5 py-1.5 rounded border border-white/10 text-xs font-mono text-white flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
                 <span>CORONA 11 3D RENDER (4K UHD)</span>
+              </div>
+
+              <!-- Measurement Dimension Annotations (Right side) -->
+              <div class="absolute bottom-6 right-6 hidden md:flex flex-col gap-1.5 font-mono text-[10px] bg-black/80 backdrop-blur-md p-3 rounded border border-white/10 text-right pointer-events-none">
+                <span class="text-[#c5a880] font-bold">PHOTOGRAPHIC SPEC:</span>
+                <span class="text-white">{{ currentSubject().cameraInfo }}</span>
+                <span class="text-[#9aa0ae]">{{ currentSubject().notes }}</span>
               </div>
             </div>
 
@@ -173,36 +202,36 @@ interface VisualizerSubject {
                   <span class="w-2 h-2 rounded-full bg-[#c5a880] animate-ping"></span>
                   <span>AUTOCAD 2025 WORKING DRAWING</span>
                 </div>
+
+                <!-- Technical Measurement Graphics (Left side) -->
+                <div class="absolute bottom-6 left-6 hidden md:flex flex-col gap-1 font-mono text-[10px] bg-black/85 backdrop-blur-md p-3 rounded border border-white/10 pointer-events-none">
+                  <span class="text-[#10b981] font-bold">MILLIMETER ACCURACY:</span>
+                  <span class="text-white">SPAN: {{ currentSubject().dimensions }}</span>
+                  <span class="text-[#9aa0ae]">JOINERY CLEARANCE: &plusmn;0.0 MM</span>
+                </div>
               </div>
             </div>
 
             <!-- Draggable Divider Handle -->
             <div 
-              class="absolute top-0 bottom-0 -ml-5 w-10 flex items-center justify-center pointer-events-none z-20"
+              class="absolute top-0 bottom-0 w-0.5 bg-white z-20 pointer-events-none"
               [style.left.%]="sliderPosition()"
             >
-              <div class="w-10 h-10 rounded-full bg-black/95 border-2 border-[#c5a880] shadow-[0_0_25px_rgba(197,168,128,0.5)] flex items-center justify-center text-white backdrop-blur-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="-ml-2">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#07080a] border-2 border-white text-white flex items-center justify-center shadow-2xl">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline><polyline points="9 18 15 12 9 6"></polyline></svg>
               </div>
             </div>
 
           </div>
 
-          <!-- Bottom Status & Dimension Strip -->
-          <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-[#9aa0ae] mt-5 px-2">
+          <!-- Bottom Footer Details -->
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#9aa0ae]">
             <div class="flex items-center gap-2">
-              <span class="text-[#c5a880] font-bold">&larr; Drag Interactive Slider &rarr;</span>
-              <span class="hidden sm:inline">to inspect accuracy between CAD elevation lines and Corona PBR shading</span>
+              <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+              <span><strong>Drag interaction Slider</strong> to inspect accuracy between CAD elevation lines and Corona PBR shading.</span>
             </div>
-            <div class="flex items-center gap-3 text-[11px]">
-              <span class="text-[#e2cfb6] font-bold">DIMENSIONS: {{ currentSubject().dimensions }}</span>
-              <span>&bull;</span>
-              <span>{{ currentSubject().location }}</span>
+            <div class="text-[11px] text-[#7e879b]">
+              DIMENSIONS: <span class="text-white">{{ currentSubject().dimensions }}</span> &bull; {{ currentSubject().location }}
             </div>
           </div>
 
@@ -214,46 +243,56 @@ interface VisualizerSubject {
   styles: [],
 })
 export class VisualizerStudioComponent implements AfterViewInit {
-  @ViewChild('comparisonContainer') comparisonContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('comparisonContainer') comparisonContainerRef!: ElementRef<HTMLDivElement>;
 
-  sliderPosition = signal(50);
-  isDragging = false;
-  lightingMode = signal<'warm' | 'daylight' | 'night'>('warm');
-  containerWidth = 1000;
-  activeSubjectId = signal('bedroom');
   parallaxOffset = signal(0);
+  sliderPosition = signal(48); // Initial percentage
+  containerWidth = 900;
+  isDragging = false;
   private isBrowser = false;
+
+  lightingMode = signal<'warm' | 'daylight' | 'night'>('warm');
+
+  subjects: VisualizerSubject[] = [
+    {
+      id: 'bedroom-bedwall',
+      title: 'Master Bedroom Wall Elevation',
+      cadSvg: 'assets/drawings/cad-bedroom-elevation.svg',
+      renderJpg: 'assets/projects/rahul-work/page-08.jpg',
+      dimensions: '4200mm W x 3000mm H',
+      location: 'Sector 63, Noida Suite',
+      notes: 'Curved acoustic fluted MDF with integrated warm LED profile & floating credenza.',
+      cameraInfo: 'Corona Physical Cam • 24mm • 1/60s • ISO 100',
+      stages: {
+        wireframeSvg: 'assets/drawings/cad-bedroom-elevation.svg',
+        description: '3D Polygonal Mesh in 3ds Max 2024 with Chamfered Edges',
+      },
+    },
+    {
+      id: 'wardrobe-joinery',
+      title: 'Modular Glass Wardrobe Joinery',
+      cadSvg: 'assets/drawings/cad-wardrobe-joinery.svg',
+      renderJpg: 'assets/projects/rahul-work/page-27.jpg',
+      dimensions: '3600mm W x 2700mm H',
+      location: 'Sector 65, Noida Suite',
+      notes: 'Bronze fluted glass shutters, aluminum Gola handles, and internal sensor LED illumination.',
+      cameraInfo: 'Corona Physical Cam • 28mm • 1/50s • ISO 120',
+      stages: {
+        wireframeSvg: 'assets/drawings/cad-wardrobe-joinery.svg',
+        description: 'Internal Carcass Modeling with Accurate Hardware Tolerances',
+      },
+    },
+  ];
+
+  activeSubjectId = signal('bedroom-bedwall');
 
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  subjects: VisualizerSubject[] = [
-    {
-      id: 'bedroom',
-      title: 'Master Bedroom Wall Elevation',
-      cadSvg: 'assets/drawings/cad-bedroom-elevation.svg',
-      renderJpg: 'assets/projects/rahul-work/page-01.jpg',
-      dimensions: '4200mm W x 3000mm H',
-      location: 'Sector 63, Noida Suite',
-      notes: 'Fluted wooden wall panels, recessed LED profile coves, and upholstered headboard joinery.',
-      cameraInfo: 'Corona Physical Cam 24mm',
-    },
-    {
-      id: 'wardrobe',
-      title: 'Modular Glass Wardrobe Joinery',
-      cadSvg: 'assets/drawings/cad-wardrobe-detail.svg',
-      renderJpg: 'assets/projects/rahul-work/page-11.jpg',
-      dimensions: '3600mm W x 2700mm H',
-      location: 'Camara Interiors Residence',
-      notes: 'Internal carcass shelving, sensor-activated hanging rods, and tinted glass sliding shutters.',
-      cameraInfo: 'Corona Cam 28mm Focal',
-    },
-  ];
-
-  currentSubject = () => {
-    return this.subjects.find(s => s.id === this.activeSubjectId()) || this.subjects[0];
-  };
+  currentSubject(): VisualizerSubject {
+    return this.subjects.find((s) => s.id === this.activeSubjectId()) || this.subjects[0];
+  }
 
   setLightingMode(mode: 'warm' | 'daylight' | 'night'): void {
     this.lightingMode.set(mode);
@@ -261,56 +300,27 @@ export class VisualizerStudioComponent implements AfterViewInit {
 
   lightingFilter(): string {
     switch (this.lightingMode()) {
-      case 'warm':
-        return 'sepia(0.12) saturate(1.15) brightness(1.02)';
       case 'daylight':
-        return 'contrast(1.06) brightness(1.08) saturate(0.98)';
+        return 'brightness(1.08) saturate(1.02) contrast(1.04)';
       case 'night':
-        return 'brightness(0.78) contrast(1.25) saturate(1.2) hue-rotate(-8deg)';
+        return 'brightness(0.92) contrast(1.12) saturate(1.08)';
+      case 'warm':
       default:
-        return 'none';
+        return 'sepia(0.12) saturate(1.06) contrast(1.02)';
     }
   }
 
-  startDrag(event: MouseEvent): void {
-    this.isDragging = true;
-    this.updatePosition(event.clientX);
-  }
-
-  startDragTouch(event: TouchEvent): void {
-    this.isDragging = true;
-    if (event.touches.length > 0) {
-      this.updatePosition(event.touches[0].clientX);
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      this.updateContainerWidth();
     }
   }
 
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    if (!this.isDragging) return;
-    this.updatePosition(event.clientX);
-  }
-
-  @HostListener('window:touchmove', ['$event'])
-  onTouchMove(event: TouchEvent): void {
-    if (!this.isDragging || event.touches.length === 0) return;
-    this.updatePosition(event.touches[0].clientX);
-  }
-
-  @HostListener('window:mouseup')
-  @HostListener('window:touchend')
-  stopDrag(): void {
-    this.isDragging = false;
-  }
-
-  private updatePosition(clientX: number): void {
-    if (!this.comparisonContainer) return;
-    const rect = this.comparisonContainer.nativeElement.getBoundingClientRect();
-    this.containerWidth = rect.width;
-    const x = clientX - rect.left;
-    let percentage = (x / rect.width) * 100;
-    if (percentage < 2) percentage = 2;
-    if (percentage > 98) percentage = 98;
-    this.sliderPosition.set(percentage);
+  @HostListener('window:resize')
+  onResize(): void {
+    if (this.isBrowser) {
+      this.updateContainerWidth();
+    }
   }
 
   @HostListener('window:scroll')
@@ -319,9 +329,61 @@ export class VisualizerStudioComponent implements AfterViewInit {
     this.parallaxOffset.set(window.scrollY);
   }
 
-  ngAfterViewInit(): void {
-    if (this.isBrowser && this.comparisonContainer) {
-      this.containerWidth = this.comparisonContainer.nativeElement.getBoundingClientRect().width;
+  private updateContainerWidth(): void {
+    if (this.comparisonContainerRef) {
+      this.containerWidth = this.comparisonContainerRef.nativeElement.clientWidth;
     }
+  }
+
+  startDrag(event: MouseEvent): void {
+    event.preventDefault();
+    this.isDragging = true;
+    this.updateSlider(event.clientX);
+
+    const onMouseMove = (e: MouseEvent) => {
+      if (this.isDragging) {
+        this.updateSlider(e.clientX);
+      }
+    };
+
+    const onMouseUp = () => {
+      this.isDragging = false;
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+  }
+
+  startDragTouch(event: TouchEvent): void {
+    this.isDragging = true;
+    if (event.touches.length > 0) {
+      this.updateSlider(event.touches[0].clientX);
+    }
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (this.isDragging && e.touches.length > 0) {
+        this.updateSlider(e.touches[0].clientX);
+      }
+    };
+
+    const onTouchEnd = () => {
+      this.isDragging = false;
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+
+    window.addEventListener('touchmove', onTouchMove);
+    window.addEventListener('touchend', onTouchEnd);
+  }
+
+  private updateSlider(clientX: number): void {
+    if (!this.comparisonContainerRef) return;
+    const rect = this.comparisonContainerRef.nativeElement.getBoundingClientRect();
+    const offsetX = clientX - rect.left;
+    const clamped = Math.max(0, Math.min(rect.width, offsetX));
+    const percentage = Math.round((clamped / rect.width) * 100);
+    this.sliderPosition.set(percentage);
   }
 }

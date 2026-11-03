@@ -138,6 +138,12 @@ export class CustomCursorComponent implements OnInit, OnDestroy {
   }
 
   followerClasses(): string {
+    if (this.cursorText() === 'LIGHT') {
+      return 'bg-emerald-400 border-emerald-400 text-black shadow-[0_0_25px_rgba(16,185,129,0.6)]';
+    }
+    if (this.cursorText() === 'MATERIAL') {
+      return 'bg-[#c5a880] border-[#c5a880] text-black shadow-[0_0_25px_rgba(197,168,128,0.6)]';
+    }
     switch (this.cursorState()) {
       case 'hover-project':
         return 'bg-[#c5a880] border-[#c5a880] shadow-[0_0_25px_rgba(197,168,128,0.5)]';

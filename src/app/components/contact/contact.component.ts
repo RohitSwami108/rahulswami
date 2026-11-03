@@ -10,12 +10,12 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
   template: `
     <section id="contact" class="py-24 md:py-36 border-b border-white/[0.08] relative overflow-hidden">
       
-      <!-- 02: RECOGNIZABLE EDITORIAL BACKGROUND NUMERAL (8% Opacity) -->
+      <!-- 06: RECOGNIZABLE EDITORIAL BACKGROUND NUMERAL (8% Opacity) -->
       <div 
         class="section-watermark-number top-6 right-6 sm:right-16 md:right-24"
         [style.transform]="'translateY(' + (parallaxOffset() - 4200) * 0.12 + 'px)'"
       >
-        05
+        06
       </div>
 
       <!-- 03: UNIQUE ARCHITECTURAL BACKGROUND PATTERN (Large Geometric Compass Arc & Radiant Light Sweep) -->
@@ -44,7 +44,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
         <div class="max-w-4xl mb-14">
           <div class="flex items-center gap-3 mb-3">
             <div class="section-label">
-              [ 05 // CANDIDATE INQUIRY &amp; STUDIO HIRING ]
+              [ 06 // CANDIDATE INQUIRY &amp; STUDIO HIRING ]
             </div>
             <span class="hidden sm:inline-flex cad-tech-stamp">
               DIRECT ARCHITECTURAL CONTACT

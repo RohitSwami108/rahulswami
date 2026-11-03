@@ -35,6 +35,7 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
             <a href="#works" class="hover:text-white transition-colors">Selected Works</a>
             <a href="#visualizer-studio" class="hover:text-white transition-colors">2D vs 3D</a>
             <a href="#about" class="hover:text-white transition-colors">Studio Career</a>
+            <a href="#materials" class="hover:text-[#c5a880] transition-colors">Material Studio</a>
             <a href="#services" class="hover:text-white transition-colors">Deliverables</a>
             <a href="#contact" class="hover:text-white transition-colors">Contact</a>
           </div>
