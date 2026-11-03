@@ -8,19 +8,27 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <section id="contact" class="py-20 md:py-32 border-b border-white/[0.08] relative">
-      <div class="portfolio-container">
+    <section id="contact" class="py-24 md:py-36 border-b border-white/[0.07] relative overflow-hidden">
+      
+      <!-- Section Watermark -->
+      <div class="section-watermark-number">05</div>
+
+      <!-- Architectural Crosshairs -->
+      <div class="cad-crosshair top-10 left-6"></div>
+      <div class="cad-crosshair bottom-10 right-6"></div>
+
+      <div class="portfolio-container relative z-10">
         
-        <!-- Section Header (Unified Layout) -->
+        <!-- Section Header Row -->
         <div class="max-w-4xl mb-14">
-          <div class="section-label">
-            [ 05 // CANDIDATE INQUIRY &amp; RESUME ]
+          <div class="section-label mb-3">
+            [ 05 // CANDIDATE INQUIRY &amp; STUDIO HIRING ]
           </div>
-          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight-custom mb-4">
-            Connect for Studio Opportunities &amp; Review
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#f5f5f7] tracking-tight-custom mb-4 font-display">
+            Connect for Studio Opportunities
           </h2>
-          <p class="text-base sm:text-lg text-[#9ca3af] font-normal leading-relaxed max-w-2xl">
-            Reviewing Rahul's portfolio for an Interior Designer or 3D Visualizer role? Reach out directly to discuss studio opportunities, technical working drawings, or interview scheduling.
+          <p class="text-sm sm:text-base text-[#9aa0ae] font-normal leading-relaxed max-w-2xl">
+            Reviewing Rahul's portfolio for an Interior Designer or 3D Visualizer studio position? Reach out directly to discuss studio opportunities, technical working drawings, or interview scheduling.
           </p>
         </div>
 
@@ -30,17 +38,17 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
           <div class="lg:col-span-5 flex flex-col justify-between font-mono text-xs gap-6">
             <div class="space-y-4">
               
-              <!-- Direct Resume Download Card (Prominent) -->
-              <div class="premium-card p-6 border-white/20 bg-[#12151e]">
+              <!-- Official Resume Card -->
+              <div class="premium-card p-6 sm:p-7 border-[#c5a880]/30 bg-[#0d1017]">
                 <div class="flex items-center gap-2 text-[#10b981] text-[11px] font-semibold uppercase mb-2">
                   <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
                   <span>Verified Resume Document</span>
                 </div>
-                <h4 class="text-white font-bold font-sans text-base mb-1">
+                <h3 class="text-white font-bold font-display text-lg mb-1">
                   Rahul Swami &mdash; Official Resume
-                </h4>
-                <p class="text-[#9ca3af] text-xs font-sans mb-4">
-                  Includes full work history across Sketch Spaces, Camara Interiors &amp; Ettore Interior, detailed software credentials, and project highlights.
+                </h3>
+                <p class="text-[#9aa0ae] text-xs font-sans mb-5 leading-relaxed">
+                  Includes complete studio history across Sketch Spaces (Current), Camara Interiors &amp; Ettore Interior, detailed software credentials, and technical project highlights.
                 </p>
                 <a 
                   href="assets/docs/Rahul-Swami-Resume.pdf" 
@@ -49,29 +57,29 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
                   class="btn-primary-action w-full text-xs py-2.5 justify-center"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                  <span>Download Resume (PDF)</span>
+                  <span>Download Verified Resume (PDF)</span>
                 </a>
               </div>
 
-              <!-- Email Channel -->
+              <!-- Direct Email Channel -->
               <div class="premium-card p-5">
-                <div class="text-[#6b7280] text-[11px] uppercase mb-1">Direct Email</div>
-                <a [href]="'mailto:' + contact.email" class="text-white hover:underline text-sm font-bold block mb-2 font-sans">
+                <div class="text-[#616776] text-[11px] uppercase mb-1">Direct Email</div>
+                <a [href]="'mailto:' + contact.email" class="text-white hover:text-[#c5a880] text-sm font-bold block mb-2 font-sans transition-colors">
                   {{ contact.email }}
                 </a>
                 <button 
                   type="button"
                   (click)="copyToClipboard(contact.email, 'email')"
-                  class="text-[11px] text-[#9ca3af] hover:text-white cursor-pointer bg-white/[0.04] px-2.5 py-1 rounded border border-white/10"
+                  class="text-[11px] text-[#9aa0ae] hover:text-white cursor-pointer bg-white/[0.04] px-2.5 py-1 rounded border border-white/10 transition-colors"
                 >
                   {{ copiedEmail() ? '✓ Copied to clipboard' : 'Click to copy email address' }}
                 </button>
               </div>
 
-              <!-- Phone & WhatsApp -->
+              <!-- Direct Phone & WhatsApp -->
               <div class="premium-card p-5">
-                <div class="text-[#6b7280] text-[11px] uppercase mb-1">Direct Call &amp; WhatsApp</div>
-                <a [href]="'tel:' + contact.phoneRaw" class="text-white hover:underline text-sm font-bold block mb-2 font-sans">
+                <div class="text-[#616776] text-[11px] uppercase mb-1">Direct Phone &amp; WhatsApp</div>
+                <a [href]="'tel:' + contact.phoneRaw" class="text-white hover:text-[#c5a880] text-sm font-bold block mb-2 font-sans transition-colors">
                   {{ contact.phone }}
                 </a>
                 <a 
@@ -83,13 +91,13 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
                 </a>
               </div>
 
-              <!-- Studio Location -->
+              <!-- Studio Location & Mobility -->
               <div class="premium-card p-5">
-                <div class="text-[#6b7280] text-[11px] uppercase mb-1">Location &amp; Mobility</div>
-                <div class="text-white text-sm font-bold font-sans">
+                <div class="text-[#616776] text-[11px] uppercase mb-1">Studio Location &amp; Mobility</div>
+                <div class="text-white text-sm font-bold font-display">
                   {{ contact.location }}
                 </div>
-                <div class="text-[#9ca3af] text-[11px] mt-1">
+                <div class="text-[#9aa0ae] text-[11px] mt-1">
                   Open for on-site design studio roles across New Delhi, Noida, Gurgaon &amp; NCR.
                 </div>
               </div>
@@ -99,58 +107,58 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
 
           <!-- Studio Recruiter Message Form (7 Cols) -->
           <div class="lg:col-span-7">
-            <div class="premium-card p-6 sm:p-8">
-              <h3 class="text-xl font-bold text-white tracking-tight-custom mb-1 font-sans">
+            <div class="premium-card p-6 sm:p-9 border-white/[0.12]">
+              <h3 class="text-2xl font-bold text-white tracking-tight-custom mb-1 font-display">
                 Send Direct Studio Inquiry
               </h3>
-              <p class="text-xs text-[#9ca3af] mb-6 font-mono">
+              <p class="text-xs text-[#9aa0ae] mb-6 font-mono">
                 For architectural leads, design recruiters, and studio directors scheduling portfolio reviews.
               </p>
 
               <form (submit)="onSubmitForm($event)" class="space-y-4 font-mono text-xs">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-[#9ca3af] mb-1.5">Your Name *</label>
+                    <label class="block text-[#9aa0ae] mb-1.5">Your Name *</label>
                     <input 
                       type="text" 
                       [(ngModel)]="formName" 
                       name="formName" 
                       required
                       placeholder="e.g. Vikram Sharma" 
-                      class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-white text-xs"
+                      class="w-full px-4 py-2.5 rounded bg-black/60 border border-white/10 text-white focus:outline-none focus:border-[#c5a880] text-xs transition-colors"
                     />
                   </div>
                   <div>
-                    <label class="block text-[#9ca3af] mb-1.5">Studio / Architecture Firm *</label>
+                    <label class="block text-[#9aa0ae] mb-1.5">Studio / Architecture Firm *</label>
                     <input 
                       type="text" 
                       [(ngModel)]="formStudio" 
                       name="formStudio" 
                       required
                       placeholder="e.g. Studio Architects / Design Lab" 
-                      class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-white text-xs"
+                      class="w-full px-4 py-2.5 rounded bg-black/60 border border-white/10 text-white focus:outline-none focus:border-[#c5a880] text-xs transition-colors"
                     />
                   </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-[#9ca3af] mb-1.5">Work Email / Phone *</label>
+                    <label class="block text-[#9aa0ae] mb-1.5">Work Email / Phone *</label>
                     <input 
                       type="text" 
                       [(ngModel)]="formContact" 
                       name="formContact" 
                       required
                       placeholder="e.g. contact@studio.com" 
-                      class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-white text-xs"
+                      class="w-full px-4 py-2.5 rounded bg-black/60 border border-white/10 text-white focus:outline-none focus:border-[#c5a880] text-xs transition-colors"
                     />
                   </div>
                   <div>
-                    <label class="block text-[#9ca3af] mb-1.5">Inquiry Reason</label>
+                    <label class="block text-[#9aa0ae] mb-1.5">Inquiry Reason</label>
                     <select 
                       [(ngModel)]="formReason" 
                       name="formReason"
-                      class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-white text-xs"
+                      class="w-full px-4 py-2.5 rounded bg-black/60 border border-white/10 text-white focus:outline-none focus:border-[#c5a880] text-xs transition-colors"
                     >
                       <option value="Studio Position / Interview Request">Studio Position / Interview Request</option>
                       <option value="Technical Drawing Review">Technical Drawing Review</option>
@@ -161,13 +169,13 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
                 </div>
 
                 <div>
-                  <label class="block text-[#9ca3af] mb-1.5">Message / Note</label>
+                  <label class="block text-[#9aa0ae] mb-1.5">Message / Note</label>
                   <textarea 
                     [(ngModel)]="formMessage" 
                     name="formMessage" 
                     rows="4" 
                     placeholder="We reviewed your portfolio and resume for our interior architecture team..." 
-                    class="w-full px-4 py-2.5 rounded-xl bg-black/60 border border-white/10 text-white focus:outline-none focus:border-white text-xs resize-none"
+                    class="w-full px-4 py-2.5 rounded bg-black/60 border border-white/10 text-white focus:outline-none focus:border-[#c5a880] text-xs resize-none transition-colors"
                   ></textarea>
                 </div>
 
@@ -175,16 +183,16 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
                 <div class="pt-2">
                   <button 
                     type="submit" 
-                    class="btn-primary-action w-full text-xs py-3 justify-center cursor-pointer"
+                    class="btn-primary-action w-full text-xs py-3 justify-center cursor-pointer font-mono"
                   >
                     <span>Send Message to Rahul</span>
-                    <span class="font-mono text-xs">&rarr;</span>
+                    <span>&rarr;</span>
                   </button>
                 </div>
 
                 <!-- Submission Success Notice -->
-                <div *ngIf="formSubmitted()" class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs">
-                  ✓ Thank you! Your inquiry has been prepared. You can also reach Rahul directly on WhatsApp or at rahul627q&#64;gmail.com.
+                <div *ngIf="formSubmitted()" class="p-4 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs">
+                  ✓ Thank you! Your inquiry has been prepared. You can also reach Rahul directly on WhatsApp (+91 9717379245) or at rahul627q&#64;gmail.com.
                 </div>
               </form>
 
@@ -230,7 +238,6 @@ export class ContactSectionComponent {
       `Candidate Inquiry Details:\n\nName: ${this.formName}\nStudio: ${this.formStudio}\nContact: ${this.formContact}\nReason: ${this.formReason}\n\nMessage:\n${this.formMessage}`
     );
 
-    // Open mail client fallback
     if (typeof window !== 'undefined') {
       window.open(`mailto:${this.contact.email}?subject=${subject}&body=${body}`, '_blank');
     }
