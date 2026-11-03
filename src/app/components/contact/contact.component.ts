@@ -19,18 +19,33 @@ import { CONTACT_INFO } from '../../data/portfolio.data';
       </div>
 
       <!-- 03: UNIQUE ARCHITECTURAL BACKGROUND PATTERN (Large Geometric Compass Arc & Radiant Light Sweep) -->
-      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
-        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <!-- Geometric Radial Compass Lines -->
-          <circle cx="85%" cy="85%" r="350" fill="none" stroke="rgba(197,168,128,0.06)" stroke-width="1.5" stroke-dasharray="10,14"/>
+      <div 
+        class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-35 transition-transform duration-700 ease-out"
+        [style.transform]="'translateY(' + (parallaxOffset() - 4200) * 0.08 + 'px)'"
+        aria-hidden="true"
+      >
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 900">
+          <defs>
+            <linearGradient id="contactArcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#c5a880" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.2"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Concentric Precision Compass Arcs -->
+          <circle cx="85%" cy="85%" r="350" fill="none" stroke="url(#contactArcGrad)" stroke-width="1.2" stroke-dasharray="10,14"/>
           <circle cx="85%" cy="85%" r="550" fill="none" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
+          <circle cx="85%" cy="85%" r="750" fill="none" stroke="rgba(197,168,128,0.04)" stroke-width="1" stroke-dasharray="4,8"/>
           
           <!-- Radial Degree Rays -->
-          <line x1="85%" y1="85%" x2="50%" y2="40%" stroke="rgba(197,168,128,0.06)" stroke-width="1" stroke-dasharray="4,8"/>
-          <line x1="85%" y1="85%" x2="40%" y2="70%" stroke="rgba(16,185,129,0.05)" stroke-width="1" stroke-dasharray="4,8"/>
+          <line x1="85%" y1="85%" x2="45%" y2="35%" stroke="rgba(197,168,128,0.06)" stroke-width="1" stroke-dasharray="4,8"/>
+          <line x1="85%" y1="85%" x2="35%" y2="65%" stroke="rgba(16,185,129,0.05)" stroke-width="1" stroke-dasharray="4,8"/>
+          <line x1="85%" y1="85%" x2="65%" y2="15%" stroke="rgba(255,255,255,0.025)" stroke-width="1"/>
           
           <!-- Cardinal Direction Compass Coordinates -->
-          <text x="86%" y="87%" fill="rgba(197,168,128,0.35)" font-family="monospace" font-size="10">DATUM AZIMUTH: 312° // SEC-63 NOIDA</text>
+          <text x="86%" y="87%" fill="rgba(197,168,128,0.35)" font-family="monospace" font-size="10" letter-spacing="0.1em">
+            COMMUNICATION DATUM: AZIMUTH 312&deg; // NEW DELHI, INDIA [28.5833&deg; N, 77.2417&deg; E]
+          </text>
         </svg>
       </div>
 

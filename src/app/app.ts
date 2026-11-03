@@ -12,6 +12,7 @@ import { ProjectGalleryComponent } from './components/project-gallery/project-ga
 import { ProjectModalComponent } from './components/project-modal/project-modal.component';
 import { RenderVaultModalComponent } from './components/render-vault-modal/render-vault-modal.component';
 import { ServicesComponent } from './components/services/services.component';
+import { SignatureRevealComponent } from './components/signature-reveal/signature-reveal.component';
 import { VisualizerStudioComponent } from './components/visualizer-studio/visualizer-studio.component';
 import { Project } from './models/portfolio.models';
 
@@ -20,6 +21,7 @@ import { Project } from './models/portfolio.models';
   standalone: true,
   imports: [
     CommonModule,
+    SignatureRevealComponent,
     CustomCursorComponent,
     ArchitecturalSpineComponent,
     NavbarComponent,

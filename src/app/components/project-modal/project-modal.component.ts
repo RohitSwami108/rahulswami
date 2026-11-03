@@ -71,12 +71,15 @@ import { Project } from '../../models/portfolio.models';
           </div>
         </div>
 
-        <!-- Project Hero Header -->
+        <!-- Project Hero Header with Architectural Focus Stamp -->
         <div class="my-6">
-          <div class="flex items-center gap-2 text-xs font-mono text-[#c5a880] mb-1">
+          <div class="flex items-center gap-2.5 text-xs font-mono text-[#c5a880] mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse"></span>
             <span>[ FOCUS: {{ getCategoryFocusTitle(project.category) }} ]</span>
+            <span class="text-[#616776] hidden sm:inline">&bull;</span>
+            <span class="text-[#9aa0ae] hidden sm:inline">{{ project.location }}</span>
           </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight-custom font-display mb-2">
+          <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight-custom font-display mb-2">
             {{ project.title }}
           </h2>
           <p class="text-sm sm:text-base text-[#e2cfb6] font-normal leading-relaxed">
